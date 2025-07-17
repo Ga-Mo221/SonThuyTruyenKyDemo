@@ -5,11 +5,18 @@ using System.IO;
 
 public class ActiveDemo : MonoBehaviour
 {
+    [SerializeField] private Canvas _canvas;
+
+
     private string fileUrl = "https://docs.google.com/document/d/16rfUUY8qvkMe9q8qQRt-6OdpuuO4owYfa9Q7sF1C8qw/export?format=txt";
     private string savePath => Path.Combine(Application.persistentDataPath, "Active.txt");
 
     void Start()
     {
+        // Đặt game chạy ở độ phân giải 2K, toàn màn hình
+        Screen.SetResolution(2560, 1440, true);
+
+        PlayerManager.Instance._isAlive = false;
         StartCoroutine(CheckInternetConnection((isConnected) =>
         {
             if (isConnected)
@@ -56,14 +63,18 @@ public class ActiveDemo : MonoBehaviour
         if (fileContent == "Run = OK")
         {
             Debug.Log("O-Có Thể Chơi Bản Beta");
+            PlayerManager.Instance._isAlive = true;
         }
         else
         {
+            _canvas.enabled = true;
+            PlayerManager.Instance._isAlive = false;
             Debug.LogWarning("X-Bản Beta đã đóng Hẹn Bạn Một Ngày Sớm Nhất");
+            Debug.Log(fileContent);
         }
     }
 
-    public IEnumerator CheckInternetConnection(System.Action<bool> callback)
+    private IEnumerator CheckInternetConnection(System.Action<bool> callback)
     {
         using (UnityWebRequest uwr = UnityWebRequest.Get("https://www.google.com"))
         {
@@ -79,6 +90,11 @@ public class ActiveDemo : MonoBehaviour
                 callback?.Invoke(true);
             }
         }
+    }
+
+    public void outGame()
+    {
+        Application.Quit();
     }
 
 }

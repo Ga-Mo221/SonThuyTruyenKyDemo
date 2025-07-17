@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: d13b92128f0f22141ab8c30ab7bf5960
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7632921392889380862
+    second: hoa1_0
+  - first:
+      213: -2151897059248247137
+    second: hoa1_1
+  - first:
+      213: -956499078611904400
+    second: hoa1_2
+  - first:
+      213: 5914095950072790430
+    second: hoa1_3
+  - first:
+      213: -4220961359666932463
+    second: hoa1_4
+  - first:
+      213: 7549759510077668718
+    second: hoa1_5
+  - first:
+      213: 5125592116858373612
+    second: hoa1_6
+  - first:
+      213: 8449010701929576381
+    second: hoa1_7
+  - first:
+      213: -6179621244140699110
+    second: hoa1_8
+  - first:
+      213: -1590600699981778599
+    second: hoa1_9
+  - first:
+      213: 6599711156266016126
+    second: hoa1_10
+  - first:
+      213: -6007862896038926508
+    second: hoa1_11
+  - first:
+      213: -2108522888983600544
+    second: hoa1_12
+  - first:
+      213: -1839874880549457340
+    second: hoa1_13
+  - first:
+      213: -1585282448833843179
+    second: hoa1_14
+  - first:
+      213: 921946308545702431
+    second: hoa1_15
+  - first:
+      213: 1689522510683105402
+    second: hoa1_16
+  - first:
+      213: 2621286815569603189
+    second: hoa1_17
+  - first:
+      213: -2947972240808889163
+    second: hoa1_18
+  - first:
+      213: -4964822879545837743
+    second: hoa1_19
+  - first:
+      213: -820702279846318557
+    second: hoa1_20
+  - first:
+      213: -160845533544674362
+    second: hoa1_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hoa1_0
+      rect:
+        serializedVersion: 2
+        x: 5701
+        y: 236
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: effb6add0959de960800000000000000
+      internalID: 7632921392889380862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_1
+      rect:
+        serializedVersion: 2
+        x: 5240
+        y: 133
+        width: 28
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9eec4e960de222e0800000000000000
+      internalID: -2151897059248247137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_2
+      rect:
+        serializedVersion: 2
+        x: 5261
+        y: 140
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 078595fd725d9b2f0800000000000000
+      internalID: -956499078611904400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_3
+      rect:
+        serializedVersion: 2
+        x: 5268
+        y: 138
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d3aafaee6131250800000000000000
+      internalID: 5914095950072790430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_4
+      rect:
+        serializedVersion: 2
+        x: 5282
+        y: 135
+        width: 33
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 115176ac1022c65c0800000000000000
+      internalID: -4220961359666932463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_5
+      rect:
+        serializedVersion: 2
+        x: 5336
+        y: 141
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6d7ec9264226c860800000000000000
+      internalID: 7549759510077668718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_6
+      rect:
+        serializedVersion: 2
+        x: 5354
+        y: 141
+        width: 43
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce5c2ecafd2c12740800000000000000
+      internalID: 5125592116858373612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_7
+      rect:
+        serializedVersion: 2
+        x: 5399
+        y: 144
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db77cf7f77ae04570800000000000000
+      internalID: 8449010701929576381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_8
+      rect:
+        serializedVersion: 2
+        x: 5403
+        y: 136
+        width: 17
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12498038339d3aa0800000000000000
+      internalID: -6179621244140699110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_9
+      rect:
+        serializedVersion: 2
+        x: 5419
+        y: 145
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 951391a371d0de9e0800000000000000
+      internalID: -1590600699981778599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_10
+      rect:
+        serializedVersion: 2
+        x: 5438
+        y: 140
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7d1b617452e69b50800000000000000
+      internalID: 6599711156266016126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_11
+      rect:
+        serializedVersion: 2
+        x: 5450
+        y: 137
+        width: 28
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 457a95ee688cf9ca0800000000000000
+      internalID: -6007862896038926508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_12
+      rect:
+        serializedVersion: 2
+        x: 5476
+        y: 142
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0622a599a950db2e0800000000000000
+      internalID: -2108522888983600544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_13
+      rect:
+        serializedVersion: 2
+        x: 5506
+        y: 141
+        width: 13
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4427fa15b837776e0800000000000000
+      internalID: -1839874880549457340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_14
+      rect:
+        serializedVersion: 2
+        x: 5515
+        y: 140
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 510f8901302fff9e0800000000000000
+      internalID: -1585282448833843179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_15
+      rect:
+        serializedVersion: 2
+        x: 5529
+        y: 135
+        width: 32
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1a69de68496bcc00800000000000000
+      internalID: 921946308545702431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_16
+      rect:
+        serializedVersion: 2
+        x: 5570
+        y: 140
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78ea41a5c3627710800000000000000
+      internalID: 1689522510683105402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_17
+      rect:
+        serializedVersion: 2
+        x: 5594
+        y: 136
+        width: 21
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ae078787ea06420800000000000000
+      internalID: 2621286815569603189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_18
+      rect:
+        serializedVersion: 2
+        x: 5609
+        y: 137
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b4bfd2bdd2b617d0800000000000000
+      internalID: -2947972240808889163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_19
+      rect:
+        serializedVersion: 2
+        x: 5622
+        y: 137
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15730f355e7691bb0800000000000000
+      internalID: -4964822879545837743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_20
+      rect:
+        serializedVersion: 2
+        x: 5650
+        y: 138
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32e286fef974c94f0800000000000000
+      internalID: -820702279846318557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoa1_21
+      rect:
+        serializedVersion: 2
+        x: 5660
+        y: 138
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cb8c55e6df84cdf0800000000000000
+      internalID: -160845533544674362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hoa1_0: 7632921392889380862
+      hoa1_1: -2151897059248247137
+      hoa1_10: 6599711156266016126
+      hoa1_11: -6007862896038926508
+      hoa1_12: -2108522888983600544
+      hoa1_13: -1839874880549457340
+      hoa1_14: -1585282448833843179
+      hoa1_15: 921946308545702431
+      hoa1_16: 1689522510683105402
+      hoa1_17: 2621286815569603189
+      hoa1_18: -2947972240808889163
+      hoa1_19: -4964822879545837743
+      hoa1_2: -956499078611904400
+      hoa1_20: -820702279846318557
+      hoa1_21: -160845533544674362
+      hoa1_3: 5914095950072790430
+      hoa1_4: -4220961359666932463
+      hoa1_5: 7549759510077668718
+      hoa1_6: 5125592116858373612
+      hoa1_7: 8449010701929576381
+      hoa1_8: -6179621244140699110
+      hoa1_9: -1590600699981778599
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

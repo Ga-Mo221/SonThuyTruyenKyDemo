@@ -82,11 +82,11 @@ public class PlayerManager : MonoBehaviour
             _currentHealth = 0f,
 
             // Stamina
-            _stamina = 100f,
+            _stamina = 200f,
 
             // Move speed
-            _walkSpeed = 2f,
-            _runSpeed = 5f,
+            _walkSpeed = 3f,
+            _runSpeed = 8f,
 
             // Nhảy
             _jumpForce = 15f,
@@ -100,7 +100,7 @@ public class PlayerManager : MonoBehaviour
             _magicResist = 5f,
 
             // Dash
-            _dashPower = 15f,
+            _dashPower = 20f,
             _dashingTime = 0.2f,
             _dashingCooldown = 1f,
 
@@ -111,7 +111,7 @@ public class PlayerManager : MonoBehaviour
             _delay = 0f,
 
             // Tỉ lệ chí mạng
-            _critChancePhysical = 100f,
+            _critChancePhysical = 0f,
             _critChanceMagic = 0f,
             _critMultiplier = 1.5f,
 

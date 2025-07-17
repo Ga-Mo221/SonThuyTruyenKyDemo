@@ -14,14 +14,15 @@ public class PlayerInput : MonoBehaviour
     public bool _isAttack { get; private set; }
 
 
+
     private void Update()
     {
         if (PlayerManager.Instance._isAlive && !PlayerManager.Instance._knocked)
         {
-            handleMove();
             handleSitAndDash();
             handleJump();
             handleAttack();
+            handleMove();
         }
     }
 
@@ -41,20 +42,20 @@ public class PlayerInput : MonoBehaviour
             _isRunning = false;
         }
         if (_isMoving && _isrun && _lastDirection != _moveInput && !_isSiting)
+        {
+            if (_resetIsRun != null)
             {
-                if (_resetIsRun != null)
-                {
-                    StopCoroutine(_resetIsRun);
-                    _resetIsRun = null;
-                }
-                if (PlayerManager.Instance._stamina > 0)
-                {
-                    _isRunning = true;
-                }
-                _recoverStamina = false;
-                _lastDirection = _moveInput;
-                _startResetIsRun = true;
+                StopCoroutine(_resetIsRun);
+                _resetIsRun = null;
             }
+            if (PlayerManager.Instance._stamina > 0)
+            {
+                _isRunning = true;
+            }
+            _recoverStamina = false;
+            _lastDirection = _moveInput;
+            _startResetIsRun = true;
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift) && !_isSiting && _isMoving && !_isRunning && PlayerManager.Instance._stamina > 0)
         {
             _lastDirection = _moveInput;
@@ -97,7 +98,7 @@ public class PlayerInput : MonoBehaviour
     private Coroutine _resetDash;
     private void handleSitAndDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             if (_isJumping || _isRunning)
             {
@@ -107,6 +108,10 @@ public class PlayerInput : MonoBehaviour
                 _resetDash = StartCoroutine(resetDash());
             }
             else _isSiting = !_isSiting;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            _isSiting = false;
         }
     }
     public IEnumerator resetDash()
@@ -125,10 +130,22 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             if (_isSiting) _isSiting = false;
-            else { _isJump = true; }
+            else
+            {
+                if (!_isDash)
+                {
+                    _isJump = true;
+                    StartCoroutine(resetJump());
+                }
+            }
         }
     }
-    public void resetJump() => _isJump = false;
+    private IEnumerator resetJump()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        _isJump = false;
+    }
     public void setJumping() => _isJumping = true;
     public void resetJumping() => _isJumping = false;
 
@@ -142,6 +159,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
             _isAttack = true;
+            if (_isSiting) _isSiting = !_isSiting;
             StartCoroutine(resetAttack());
         }
     }

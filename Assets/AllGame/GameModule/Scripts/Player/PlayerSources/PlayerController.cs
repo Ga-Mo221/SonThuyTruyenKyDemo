@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         checkGrounded();
+        //debug();
         if (_canMove)
         {
             handleJump();
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
         _animManger.setSiting(_playerInput._isSiting);
     }
 
+
     private void handleDash()
     {
         if (_playerInput._isDash && _canDash)
@@ -103,7 +104,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(startDash());
         }
     }
-
     private IEnumerator startDash()
     {
         _canDash = false;
@@ -147,19 +147,23 @@ public class PlayerController : MonoBehaviour
     {
         if ((_playerInput._isJump && _isGround) || (_playerInput._isJump && _jumpCount < 1))
         {
+            StartCoroutine(fixDash());
             float _jumpForce = PlayerManager.Instance.Stats._jumpForce;
             // reset Velocity
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0);
 
             if (!_isGround) _jumpCount++;
-            if (_playerInput._isDash)
-            {
-                resetDash();
-                StartCoroutine(resetDashCooldown());
-            }
             _animManger.setJumping();
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
-            _playerInput.resetJump();
+        }
+    }
+    private IEnumerator fixDash()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (_isDashing)
+        {
+            resetDash();
+            StartCoroutine(resetDashCooldown());
         }
     }
 
@@ -170,5 +174,21 @@ public class PlayerController : MonoBehaviour
         {
             _animManger.setAttack();
         }
+    }
+
+
+    private void debug()
+    {
+        if (_playerInput._isMoving)
+        {
+            if (_playerInput._isRunning)
+                Debug.Log("Đang chạy");
+            else
+                Debug.Log("Đang đi");
+        }
+        if (_playerInput._isSiting) Debug.Log("Đang ngồi");
+        if (_playerInput._isJumping) Debug.Log("Đang nhảy");
+        if (_isDashing) Debug.Log("đang Dash");
+        if (!_canMove) Debug.Log("Đang Đánh");
     }
 }

@@ -12,7 +12,6 @@ public class BasicAttack : MonoBehaviour
         {
             _damage = PlayerManager.Instance.Stats.getPhysicDamage();
             hinhnom.hit(_damage, _ID);
-            Debug.Log($"damage = {_damage}");
         }
     }
 }

@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b82bbcf2764e40913add5902cb0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePowerX: 3
+  _movePowerX: 5
   _movePowerY: 0
   _moveX: 1
   _moveY: 0
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b82bbcf2764e40913add5902cb0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePowerX: 3
+  _movePowerX: 6
   _movePowerY: 0
   _moveX: 1
   _moveY: 0
@@ -2628,7 +2628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b82bbcf2764e40913add5902cb0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePowerX: 3
+  _movePowerX: 5
   _movePowerY: 0
   _moveX: 1
   _moveY: 0
