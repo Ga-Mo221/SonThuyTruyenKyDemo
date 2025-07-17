@@ -41,8 +41,47 @@ TagManager:
   - name: Ground
     uniqueID: 1330283213
     locked: 0
+  - name: nen
+    uniqueID: 2226521571
+    locked: 0
+  - name: haucanh
+    uniqueID: 3619873607
+    locked: 0
+  - name: co1
+    uniqueID: 2650506099
+    locked: 0
+  - name: cay
+    uniqueID: 1388548237
+    locked: 0
+  - name: co3
+    uniqueID: 548205783
+    locked: 0
+  - name: co
+    uniqueID: 676829689
+    locked: 0
+  - name: ven
+    uniqueID: 490849271
+    locked: 0
+  - name: duongxi
+    uniqueID: 3705165253
+    locked: 0
+  - name: hoa1
+    uniqueID: 3512209237
+    locked: 0
+  - name: enemy
+    uniqueID: 777110873
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: tiencanh
+    uniqueID: 1489304643
+    locked: 0
+  - name: hoa2
+    uniqueID: 836328977
+    locked: 0
+  - name: UI
+    uniqueID: 3987219135
     locked: 0
   m_RenderingLayers:
   - Default
