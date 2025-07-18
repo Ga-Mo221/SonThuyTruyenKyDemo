@@ -2,27 +2,25 @@ using UnityEngine;
 
 public class PlayerChangeStateCollider : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D _upState;
-    [SerializeField] private BoxCollider2D _downState;
+    [SerializeField] private CapsuleCollider2D _upState;
+    [SerializeField] private CapsuleCollider2D _downState;
+    [SerializeField] private BoxCollider2D _meterial;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private PlayerInput _playerInput;
 
-    void Update()
+    void FixedUpdate()
     {
         changeState();
     }
 
     private void changeState()
     {
-        if (_playerController._isDashing || _playerInput._isSiting)
+        bool isDown = _playerController._isDashing || _playerInput._isSiting;
+        if (_downState.enabled != isDown)
         {
-            _upState.enabled = false;
-            _downState.enabled = true;
-        }
-        else
-        {
-            _upState.enabled = true;
-            _downState.enabled = false;
+            _downState.enabled = isDown;
+            _upState.enabled = !isDown;
+            _meterial.enabled = !isDown;
         }
     }
 }

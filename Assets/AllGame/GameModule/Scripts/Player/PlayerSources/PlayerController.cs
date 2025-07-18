@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // check gorunded
     private void checkGrounded()
     {
-        _isGround = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer) && _rb.linearVelocity.y == 0;
+        _isGround = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer);
         _animManger.setIsGround(_isGround);
         if (_isGround)
         {
@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour
     // Move
     private void handleMove()
     {
-        if (_playerInput._isDash) return;
         float _moveSpeed = PlayerManager.Instance.Stats.GetMoveSpeed(_playerInput._isRunning);
+        if (_playerInput._isDash) return;
         if (_playerInput._isSiting) _moveSpeed -= 0.5f;
         if (_playerInput._isJumping) _moveSpeed += 1;
         if (_playerInput._isRunning && PlayerManager.Instance._stamina > 0)
