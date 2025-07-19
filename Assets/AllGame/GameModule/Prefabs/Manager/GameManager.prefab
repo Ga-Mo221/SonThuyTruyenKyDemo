@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6309983432843348529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6632522468469182625}
+  - component: {fileID: 4191049761086580539}
+  - component: {fileID: 575398191930856895}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6632522468469182625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309983432843348529}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 105.18782, y: 3.577361, z: -9.9919195}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4191049761086580539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309983432843348529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a73b0593c3b74844a5b8c08afcd7cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animManager: {fileID: 0}
+  Stats:
+    _level: 0
+    _currentExp: 0
+    _requiredExp: 0
+    _maxHealth: 0
+    _currentHealth: 0
+    _stamina: 0
+    _walkSpeed: 0
+    _runSpeed: 0
+    _jumpForce: 0
+    _physicalDamage: 0
+    _magicDamage: 0
+    _physicalDefense: 0
+    _armor: 0
+    _magicResist: 0
+    _dashPower: 0
+    _dashingTime: 0
+    _dashingCooldown: 0
+    _attackSpeed: 0
+    _delay: 0
+    _critChancePhysical: 0
+    _critChanceMagic: 0
+    _critMultiplier: 0
+    _cooldownReduction: 0
+    _xeng: 0
+    _tutorialRun: 0
+    _tutorialJump: 0
+    _tutorialSit: 0
+    _tutorialAttack: 0
+    _doubleJump: 0
+    _skillQ: 0
+    _skillW: 0
+    _skillE: 0
+  _isAlive: 1
+  _knocked: 0
+  _dashTime: 0
+  _stamina: 0
+--- !u!114 &575398191930856895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309983432843348529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9ebed0766ae5a43b4c04ded225c8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

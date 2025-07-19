@@ -19,9 +19,12 @@ public class PlayerInput : MonoBehaviour
     {
         if (PlayerManager.Instance._isAlive && !PlayerManager.Instance._knocked)
         {
-            handleSitAndDash();
-            handleJump();
-            handleAttack();
+            if (PlayerManager.Instance.Stats._tutorialSit)
+                handleSitAndDash();
+            if (PlayerManager.Instance.Stats._tutorialJump)
+                handleJump();
+            if (PlayerManager.Instance.Stats._tutorialAttack)
+                handleAttack();
             handleMove();
         }
     }
@@ -56,7 +59,7 @@ public class PlayerInput : MonoBehaviour
             _lastDirection = _moveInput;
             _startResetIsRun = true;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isSiting && _isMoving && !_isRunning && PlayerManager.Instance._stamina > 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isSiting && _isMoving && !_isRunning && PlayerManager.Instance._stamina > 0 && PlayerManager.Instance.Stats._tutorialRun)
         {
             _lastDirection = _moveInput;
             _isRunning = !_isRunning;

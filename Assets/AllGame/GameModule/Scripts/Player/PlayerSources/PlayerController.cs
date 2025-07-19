@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
     // Jump
     private void handleJump()
     {
-        if ((_playerInput._isJump && _isGround) || (_playerInput._isJump && _jumpCount < 1))
+        if ((_playerInput._isJump && _isGround) || (_playerInput._isJump && _jumpCount < 1 && PlayerManager.Instance.Stats._doubleJump))
         {
             StartCoroutine(fixDash());
             float _jumpForce = PlayerManager.Instance.Stats._jumpForce;

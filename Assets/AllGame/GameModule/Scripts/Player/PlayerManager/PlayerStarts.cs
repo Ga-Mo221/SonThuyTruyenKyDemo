@@ -55,6 +55,12 @@ public class PlayerStats
     // tiền tệ
     public int _xeng;
 
+    // Hướng dẫn
+    public bool _tutorialRun;
+    public bool _tutorialJump;
+    public bool _tutorialSit;
+    public bool _tutorialAttack;
+
     // Kỹ năng đã mở
     public bool _doubleJump;
     public bool _skillQ;

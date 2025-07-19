@@ -82,11 +82,11 @@ public class PlayerManager : MonoBehaviour
             _currentHealth = 0f,
 
             // Stamina
-            _stamina = 200f,
+            _stamina = 20000f,
 
             // Move speed
-            _walkSpeed = 3f,
-            _runSpeed = 8f,
+            _walkSpeed = 2f,
+            _runSpeed = 6f,
 
             // Nhảy
             _jumpForce = 15f,
@@ -120,6 +120,12 @@ public class PlayerManager : MonoBehaviour
 
             // Tiền tệ
             _xeng = 0,
+
+            // Hướng dẫn
+            _tutorialRun = true,
+            _tutorialJump = true,
+            _tutorialSit = true,
+            _tutorialAttack = true,
 
             // Kỹ năng đã mở
             _doubleJump = false,
