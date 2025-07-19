@@ -425,7 +425,7 @@ namespace Pathfinding {
 			// If gravity is used depends on a lot of things.
 			// For example when a non-kinematic rigidbody is used then the rigidbody will apply the gravity itself
 			// Note that the gravity can contain NaN's, which is why the comparison uses !(a==b) instead of just a!=b.
-			usingGravity = !(gravity == Vector3.zero) && (!updatePosition || ((rigid == null || rigid.isKinematic) && (rigid2D == null || rigid2D.isKinematic)));
+			usingGravity = !(gravity == Vector3.zero) && (!updatePosition || ((rigid == null || rigid.isKinematic) && (rigid2D == null || rigid2D.bodyType == RigidbodyType2D.Kinematic)));
 			if (rigid == null && rigid2D == null && canMove) {
 				Vector3 nextPosition;
 				Quaternion nextRotation;
