@@ -79,17 +79,17 @@ public class PlayerManager : MonoBehaviour
 
             // HP
             _maxHealth = 100f,
-            _currentHealth = 0f,
+            _currentHealth = 100f,
 
             // Stamina
             _stamina = 20000f,
 
             // Move speed
-            _walkSpeed = 2f,
-            _runSpeed = 6f,
+            _walkSpeed = 5f,
+            _runSpeed = 15f,
 
             // Nhảy
-            _jumpForce = 15f,
+            _jumpForce = 22f,
 
             // Damage
             _physicalDamage = 10f,
@@ -101,7 +101,7 @@ public class PlayerManager : MonoBehaviour
 
             // Dash
             _dashPower = 20f,
-            _dashingTime = 0.2f,
+            _dashingTime = 0.4f,
             _dashingCooldown = 1f,
 
             // Attack speed (%)
@@ -125,7 +125,8 @@ public class PlayerManager : MonoBehaviour
             _tutorialRun = true,
             _tutorialJump = true,
             _tutorialSit = true,
-            _tutorialAttack = true,
+            _tutorialAttack = false,
+            _tutorialDash = false,
 
             // Kỹ năng đã mở
             _doubleJump = false,

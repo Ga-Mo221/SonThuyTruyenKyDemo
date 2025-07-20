@@ -166,7 +166,7 @@ public class PhongHuyetTrung : EnemyBase
         HealthManager health = _player.GetComponent<HealthManager>();
         if (health != null)
         {
-            health.takeDamage(1, _enemyPhysicalDamage, false);
+            health.takeDamage(1, base._enemyPhysicalDamage, false);
             Debug.Log($"PhongHuyetTrung attacks player with {_enemyPhysicalDamage} physical damage.");
         }
     }
@@ -179,6 +179,4 @@ public class PhongHuyetTrung : EnemyBase
             TakeDamage();
         }
     }
-
-    
 }

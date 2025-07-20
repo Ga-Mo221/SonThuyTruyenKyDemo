@@ -60,6 +60,7 @@ public class PlayerStats
     public bool _tutorialJump;
     public bool _tutorialSit;
     public bool _tutorialAttack;
+    public bool _tutorialDash;
 
     // Kỹ năng đã mở
     public bool _doubleJump;
@@ -140,8 +141,14 @@ public class PlayerStats
     {
         if (!magic)
         {
-            float _damage = damage + ((damage / 100) * _physicalDefense);
+            float _damage = damage * (1f - _physicalDefense / 100f);
             _damage = _damage - _armor;
+            if (_damage <= 0) _damage = 1;
+            _currentHealth -= _damage;
+        }
+        else
+        {
+            float _damage = damage - _magicResist;
             if (_damage <= 0) _damage = 1;
             _currentHealth -= _damage;
         }

@@ -3,21 +3,15 @@ using UnityEngine;
 
 public class EnemyRada : MonoBehaviour
 {
-    public List<Collider2D> _detectedColliders = new List<Collider2D>();
-    Collider2D col;
-
-    void Awake()
-    {
-        col = GetComponent<Collider2D>();
-    }
+    public GameObject _player;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        _detectedColliders.Add(collision);
+        _player = collision.gameObject;
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        _detectedColliders.Remove(collision);
+        _player = null;
     }
 }

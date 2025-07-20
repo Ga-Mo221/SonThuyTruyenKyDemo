@@ -103,14 +103,18 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (_isJumping || _isRunning)
+            if ((_isJumping || _isRunning) && PlayerManager.Instance.Stats._tutorialDash)
             {
                 _isDash = true;
                 if (_resetDash != null)
                     StopCoroutine(_resetDash);
                 _resetDash = StartCoroutine(resetDash());
             }
-            else _isSiting = !_isSiting;
+            else
+            {
+                if (!_isRunning)
+                    _isSiting = !_isSiting;
+            }
         }
         if (Input.GetKeyUp(KeyCode.S))
         {

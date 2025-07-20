@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // check gorunded
     private void checkGrounded()
     {
-        _isGround = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer);
+        _isGround = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer) && _rb.linearVelocity.y < 1;
         _animManger.setIsGround(_isGround);
         if (_isGround)
         {
@@ -64,6 +64,11 @@ public class PlayerController : MonoBehaviour
             _playerInput.resetJumping();
         }
         else _playerInput.setJumping();
+
+        if (_isGround && !_playerInput._isMoving && !_isDashing && !_playerInput._isJumping)
+        {
+            _rb.linearVelocity = new Vector2(0, 0);
+        }
     }
 
     // Move

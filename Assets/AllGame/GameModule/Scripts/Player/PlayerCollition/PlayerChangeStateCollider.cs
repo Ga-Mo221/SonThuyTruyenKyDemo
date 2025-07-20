@@ -5,8 +5,15 @@ public class PlayerChangeStateCollider : MonoBehaviour
     [SerializeField] private CapsuleCollider2D _upState;
     [SerializeField] private CapsuleCollider2D _downState;
     [SerializeField] private BoxCollider2D _meterial;
-    [SerializeField] private PlayerController _playerController;
-    [SerializeField] private PlayerInput _playerInput;
+    
+    private PlayerController _playerController;
+    private PlayerInput _playerInput;
+
+    void Awake()
+    {
+        _playerController = GetComponent<PlayerController>();
+        _playerInput = GetComponent<PlayerInput>();
+    }
 
     void FixedUpdate()
     {

@@ -1,8 +1,6 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
 using Pathfinding;
-using UnityEditor.Callbacks;
 
 
 
@@ -124,24 +122,7 @@ public abstract class EnemyBase : MonoBehaviour
     // Hàm phát hiện người chơi
     private void detechtPlayer()
     {
-
-        foreach (var col in _enemyRada._detectedColliders)
-        {
-            if (col.CompareTag("Player"))
-            {
-
-                Transform _pos = col.transform;
-                while (_pos != null)
-                {
-                    if (_pos.name == "Player")
-                    {
-                        _player = _pos.gameObject;
-                        break;
-                    }
-                    _pos = _pos.parent;
-                }
-            }
-        }
+        _player = _enemyRada._player;
     }
 
     // Hàm di chuyển đến người chơi
@@ -183,42 +164,42 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     // Hàm tuần tra
-protected virtual void Patrol()
-{
-    if (_rb == null || !_seeker.IsDone()) return;
-
-    // Nếu không có đường thì yêu cầu Seeker tạo đường mới
-    if (_path == null || _currentWaypoint >= _path.vectorPath.Count)
+    protected virtual void Patrol()
     {
-        Vector3 patrolPoint = _movingToRight
-            ? _patrolStartPos + Vector3.right * _patrolRange
-            : _patrolStartPos + Vector3.left * _patrolRange;
+        if (_rb == null || !_seeker.IsDone()) return;
 
-        _seeker.StartPath(_rb.position, patrolPoint, onPathComplete);
-        return;
+        // Nếu không có đường thì yêu cầu Seeker tạo đường mới
+        if (_path == null || _currentWaypoint >= _path.vectorPath.Count)
+        {
+            Vector3 patrolPoint = _movingToRight
+                ? _patrolStartPos + Vector3.right * _patrolRange
+                : _patrolStartPos + Vector3.left * _patrolRange;
+
+            _seeker.StartPath(_rb.position, patrolPoint, onPathComplete);
+            return;
+        }
+
+        Vector2 direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
+        float currentSpeed = _enemyMoveSpd;
+        Vector2 _force = direction * currentSpeed * Time.deltaTime* 10f;
+        if (_isPatrol)
+            _rb.AddForce(_force);
+
+        _distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
+        if (_distance < _nextWaypointDistance)
+        {
+            _currentWaypoint++;
+        }
+
+        if (_currentWaypoint >= _path.vectorPath.Count)
+        {
+            StartCoroutine(stopPatrol());
+            _rb.linearVelocity = Vector2.zero; // Dừng lại khi đến cuối đường tuần
+            _movingToRight = !_movingToRight; // Đổi hướng tuần tra
+        }
+
+        FlipEnemy();
     }
-
-    Vector2 direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
-    float currentSpeed = _enemyMoveSpd;
-    Vector2 _force = direction * currentSpeed * Time.deltaTime* 10f;
-    if (_isPatrol)
-        _rb.AddForce(_force);
-
-    _distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
-    if (_distance < _nextWaypointDistance)
-    {
-        _currentWaypoint++;
-    }
-
-    if (_currentWaypoint >= _path.vectorPath.Count)
-    {
-        StartCoroutine(stopPatrol());
-        _rb.linearVelocity = Vector2.zero; // Dừng lại khi đến cuối đường tuần
-        _movingToRight = !_movingToRight; // Đổi hướng tuần tra
-    }
-
-    FlipEnemy();
-}
     private IEnumerator stopPatrol()
     {
         _isPatrol = false;
@@ -293,6 +274,4 @@ protected virtual void Patrol()
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _detectionRange);
     }
-    
-
 }

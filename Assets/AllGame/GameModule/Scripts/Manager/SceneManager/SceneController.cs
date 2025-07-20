@@ -16,13 +16,13 @@ public class SceneController : MonoBehaviour
 
         Instance = this;
     }
-
-    public void NextLevel()
+    
+    public void NextSmallLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void LastLevel()
+    public void LastSmallLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
     }
