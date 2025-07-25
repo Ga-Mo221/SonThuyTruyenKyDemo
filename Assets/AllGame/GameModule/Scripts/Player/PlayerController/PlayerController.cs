@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     // Move
     private void handleMove()
     {
@@ -117,13 +118,9 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = new Vector2(PlayerManager.Instance.Stats.getDashPower() * transform.localScale.x, 0f);
         _animManger.setDashing();
         _tr.emitting = true;
-        bool _isJumping = _playerInput._isJumping;
         yield return new WaitForSeconds(PlayerManager.Instance.Stats._dashingTime);
-        if (_isJumping == _playerInput._isJumping)
-        {
-            resetDash();
-            StartCoroutine(resetDashCooldown());
-        }
+        resetDash();
+        StartCoroutine(resetDashCooldown());
     }
     private void resetDash()
     {

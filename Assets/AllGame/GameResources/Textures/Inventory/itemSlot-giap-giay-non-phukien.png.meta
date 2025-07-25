@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: d6644144c8ebe4146aff5fab3324c3d7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1693763060704133666
+    second: itemSlot-giap-giay-non-phukien_0
+  - first:
+      213: -8675502031849052905
+    second: itemSlot-giap-giay-non-phukien_1
+  - first:
+      213: -5038188865449765336
+    second: itemSlot-giap-giay-non-phukien_2
+  - first:
+      213: -6427802456951362825
+    second: itemSlot-giap-giay-non-phukien_3
+  - first:
+      213: -1497121043549703593
+    second: itemSlot-giap-giay-non-phukien_4
+  - first:
+      213: 9131964269047177798
+    second: itemSlot-giap-giay-non-phukien_5
+  - first:
+      213: -6574709025683687092
+    second: itemSlot-giap-giay-non-phukien_6
+  - first:
+      213: -120827102733537877
+    second: itemSlot-giap-giay-non-phukien_7
+  - first:
+      213: 5935915041613089161
+    second: itemSlot-giap-giay-non-phukien_8
+  - first:
+      213: 1953727027057345006
+    second: itemSlot-giap-giay-non-phukien_9
+  - first:
+      213: -8381880816387955357
+    second: itemSlot-giap-giay-non-phukien_10
+  - first:
+      213: -3640742560820798777
+    second: itemSlot-giap-giay-non-phukien_11
+  - first:
+      213: -7166840423743190838
+    second: itemSlot-giap-giay-non-phukien_12
+  - first:
+      213: 3971792433941159498
+    second: itemSlot-giap-giay-non-phukien_13
+  - first:
+      213: -7172198525963670371
+    second: itemSlot-giap-giay-non-phukien_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 439
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 222c2fe9784718710800000000000000
+      internalID: 1693763060704133666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_1
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 439
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7152577eddc6a9780800000000000000
+      internalID: -8675502031849052905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_2
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 439
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 826d98b9be1c41ab0800000000000000
+      internalID: -5038188865449765336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_3
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 439
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fae70ba8bbdbc6a0800000000000000
+      internalID: -6427802456951362825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_4
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 439
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752357dc758293be0800000000000000
+      internalID: -1497121043549703593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_5
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 423
+        width: 201
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642ed169e114bbe70800000000000000
+      internalID: 9131964269047177798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c49b196b9f0f1c4a0800000000000000
+      internalID: -6574709025683687092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bade356e36cb25ef0800000000000000
+      internalID: -120827102733537877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_8
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9890f30d74b906250800000000000000
+      internalID: 5935915041613089161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_9
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee145db31680d1b10800000000000000
+      internalID: 1953727027057345006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_10
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365e88d7ec39dab80800000000000000
+      internalID: -8381880816387955357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_11
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 0
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca51af2eeb797dc0800000000000000
+      internalID: -3640742560820798777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_12
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac880ec2b944a8c90800000000000000
+      internalID: -7166840423743190838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_13
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e95aadc24ae1730800000000000000
+      internalID: 3971792433941159498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlot-giap-giay-non-phukien_14
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 0
+        width: 201
+        height: 421
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9cea59c07b377c90800000000000000
+      internalID: -7172198525963670371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      itemSlot-giap-giay-non-phukien_0: 1693763060704133666
+      itemSlot-giap-giay-non-phukien_1: -8675502031849052905
+      itemSlot-giap-giay-non-phukien_10: -8381880816387955357
+      itemSlot-giap-giay-non-phukien_11: -3640742560820798777
+      itemSlot-giap-giay-non-phukien_12: -7166840423743190838
+      itemSlot-giap-giay-non-phukien_13: 3971792433941159498
+      itemSlot-giap-giay-non-phukien_14: -7172198525963670371
+      itemSlot-giap-giay-non-phukien_2: -5038188865449765336
+      itemSlot-giap-giay-non-phukien_3: -6427802456951362825
+      itemSlot-giap-giay-non-phukien_4: -1497121043549703593
+      itemSlot-giap-giay-non-phukien_5: 9131964269047177798
+      itemSlot-giap-giay-non-phukien_6: -6574709025683687092
+      itemSlot-giap-giay-non-phukien_7: -120827102733537877
+      itemSlot-giap-giay-non-phukien_8: 5935915041613089161
+      itemSlot-giap-giay-non-phukien_9: 1953727027057345006
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

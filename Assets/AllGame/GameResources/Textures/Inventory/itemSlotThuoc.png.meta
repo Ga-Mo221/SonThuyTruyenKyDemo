@@ -1,0 +1,1677 @@
+fileFormatVersion: 2
+guid: 840c941f6bfd43e459f2b25aa1cea754
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3847499520065262784
+    second: itemSlotThuoc_0
+  - first:
+      213: 2889858630866225645
+    second: itemSlotThuoc_1
+  - first:
+      213: -4307491407948703126
+    second: itemSlotThuoc_2
+  - first:
+      213: 3901383243274261895
+    second: itemSlotThuoc_3
+  - first:
+      213: -6181121740393662386
+    second: itemSlotThuoc_4
+  - first:
+      213: -8118549142266078755
+    second: itemSlotThuoc_5
+  - first:
+      213: -52922041100765817
+    second: itemSlotThuoc_6
+  - first:
+      213: 6568490313737207785
+    second: itemSlotThuoc_7
+  - first:
+      213: 617454108116419124
+    second: itemSlotThuoc_8
+  - first:
+      213: 6737752475945541395
+    second: itemSlotThuoc_9
+  - first:
+      213: -928074164178358420
+    second: itemSlotThuoc_10
+  - first:
+      213: 6649057041280797694
+    second: itemSlotThuoc_11
+  - first:
+      213: 6526984550682218599
+    second: itemSlotThuoc_12
+  - first:
+      213: -8269708660303650921
+    second: itemSlotThuoc_13
+  - first:
+      213: 4807116440494792632
+    second: itemSlotThuoc_14
+  - first:
+      213: -86104291127034713
+    second: itemSlotThuoc_15
+  - first:
+      213: 9007248977101940647
+    second: itemSlotThuoc_16
+  - first:
+      213: -6944196722515865123
+    second: itemSlotThuoc_17
+  - first:
+      213: 3895186629814181758
+    second: itemSlotThuoc_18
+  - first:
+      213: -6184983639081107715
+    second: itemSlotThuoc_19
+  - first:
+      213: 7083566478419259845
+    second: itemSlotThuoc_20
+  - first:
+      213: 3083578553262891636
+    second: itemSlotThuoc_21
+  - first:
+      213: -8819152239029334526
+    second: itemSlotThuoc_22
+  - first:
+      213: 3316258656009930290
+    second: itemSlotThuoc_23
+  - first:
+      213: 4155522683426951568
+    second: itemSlotThuoc_24
+  - first:
+      213: -7717047394759786120
+    second: itemSlotThuoc_25
+  - first:
+      213: -8007573267760373781
+    second: itemSlotThuoc_26
+  - first:
+      213: 210141907557208721
+    second: itemSlotThuoc_27
+  - first:
+      213: 8880827384702287740
+    second: itemSlotThuoc_28
+  - first:
+      213: 9027662206052891332
+    second: itemSlotThuoc_29
+  - first:
+      213: 3389763800553380278
+    second: itemSlotThuoc_30
+  - first:
+      213: -3354263855223129097
+    second: itemSlotThuoc_31
+  - first:
+      213: -1596364559905159899
+    second: itemSlotThuoc_32
+  - first:
+      213: 6467952293276359961
+    second: itemSlotThuoc_33
+  - first:
+      213: 1667564032239102912
+    second: itemSlotThuoc_34
+  - first:
+      213: 7829003654925766992
+    second: itemSlotThuoc_35
+  - first:
+      213: -3337569879469927513
+    second: itemSlotThuoc_36
+  - first:
+      213: -7778366822605865960
+    second: itemSlotThuoc_37
+  - first:
+      213: -8860330968458045528
+    second: itemSlotThuoc_38
+  - first:
+      213: 4799937798686993186
+    second: itemSlotThuoc_39
+  - first:
+      213: -6448368221792644805
+    second: itemSlotThuoc_40
+  - first:
+      213: -794195399441496765
+    second: itemSlotThuoc_41
+  - first:
+      213: -2993714663931418504
+    second: itemSlotThuoc_42
+  - first:
+      213: 3079103532924676287
+    second: itemSlotThuoc_43
+  - first:
+      213: -4428650410400872685
+    second: itemSlotThuoc_44
+  - first:
+      213: 4538096292651494234
+    second: itemSlotThuoc_45
+  - first:
+      213: 5707627241072766487
+    second: itemSlotThuoc_46
+  - first:
+      213: -6898929387033251854
+    second: itemSlotThuoc_47
+  - first:
+      213: 5125441003360790599
+    second: itemSlotThuoc_48
+  - first:
+      213: -1788630360302033338
+    second: itemSlotThuoc_49
+  - first:
+      213: 8408696338047148509
+    second: itemSlotThuoc_50
+  - first:
+      213: 6866830749178343226
+    second: itemSlotThuoc_51
+  - first:
+      213: 6966199752938112199
+    second: itemSlotThuoc_52
+  - first:
+      213: 5579228791740171194
+    second: itemSlotThuoc_53
+  - first:
+      213: 328485392665725115
+    second: itemSlotThuoc_54
+  - first:
+      213: 1816149635621618464
+    second: itemSlotThuoc_55
+  - first:
+      213: -8106766313020131396
+    second: itemSlotThuoc_56
+  - first:
+      213: 5945973015562391694
+    second: itemSlotThuoc_57
+  - first:
+      213: 1322637392830348720
+    second: itemSlotThuoc_58
+  - first:
+      213: 3790418491773690881
+    second: itemSlotThuoc_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: itemSlotThuoc_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1979
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b2609429fea9ac0800000000000000
+      internalID: -3847499520065262784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_1
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1979
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9c0e71d17da1820800000000000000
+      internalID: 2889858630866225645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_2
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1979
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6a9b24f267b834c0800000000000000
+      internalID: -4307491407948703126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_3
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1979
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785160ca36f742630800000000000000
+      internalID: 3901383243274261895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_4
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1979
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e48346ea68e383aa0800000000000000
+      internalID: -6181121740393662386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_5
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1963
+        width: 201
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd99daba19e155f80800000000000000
+      internalID: -8118549142266078755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1759
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785766b1fabf34ff0800000000000000
+      internalID: -52922041100765817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_7
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1759
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef76e49327f72b50800000000000000
+      internalID: 6568490313737207785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_8
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1759
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 432826b6d33a19800800000000000000
+      internalID: 617454108116419124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_9
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1759
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f1e31cd2e418d50800000000000000
+      internalID: 6737752475945541395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_10
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1759
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6f6eeef671de13f0800000000000000
+      internalID: -928074164178358420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_11
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1759
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb0adc9622364c50800000000000000
+      internalID: 6649057041280797694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1539
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76050ed0ed1849a50800000000000000
+      internalID: 6526984550682218599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_13
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1539
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79f11aac9c71c3d80800000000000000
+      internalID: -8269708660303650921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_14
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1539
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bfd1a5feee46b240800000000000000
+      internalID: 4807116440494792632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_15
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1539
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ac7cb97a981ecef0800000000000000
+      internalID: -86104291127034713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_16
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1539
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a769a3e83d200d70800000000000000
+      internalID: 9007248977101940647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_17
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1523
+        width: 201
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd192007fd141af90800000000000000
+      internalID: -6944196722515865123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1319
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7fdceb2a9b7e0630800000000000000
+      internalID: 3895186629814181758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_19
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1319
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfeb7f256268a2aa0800000000000000
+      internalID: -6184983639081107715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_20
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1319
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c17b098e22ed4260800000000000000
+      internalID: 7083566478419259845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_21
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1319
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4726f305b521bca20800000000000000
+      internalID: 3083578553262891636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_22
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1319
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ec094b3c31c9580800000000000000
+      internalID: -8819152239029334526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_23
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1319
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23649c66da7b50e20800000000000000
+      internalID: 3316258656009930290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1099
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 091ddb91dd16ba930800000000000000
+      internalID: 4155522683426951568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_25
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1099
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8714d78f74a87e490800000000000000
+      internalID: -7717047394759786120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_26
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1099
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bef9a36f9826fd090800000000000000
+      internalID: -8007573267760373781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_27
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1099
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 192de5893f29ae200800000000000000
+      internalID: 210141907557208721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_28
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1099
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7fbdb824790f3b70800000000000000
+      internalID: 8880827384702287740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_29
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1083
+        width: 201
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ca700022f2b84d70800000000000000
+      internalID: 9027662206052891332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 879
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b95674873cda0f20800000000000000
+      internalID: 3389763800553380278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_31
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 879
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb3e7a9bc24371d0800000000000000
+      internalID: -3354263855223129097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_32
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 879
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52584d204e298d9e0800000000000000
+      internalID: -1596364559905159899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_33
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 879
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91d19e09758c2c950800000000000000
+      internalID: 6467952293276359961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_34
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 879
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb64d5f6a0642710800000000000000
+      internalID: 1667564032239102912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_35
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 879
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051d515285536ac60800000000000000
+      internalID: 7829003654925766992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 659
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3d629b0e19ea1d0800000000000000
+      internalID: -3337569879469927513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_37
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 659
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81cb4ed1690bd0490800000000000000
+      internalID: -7778366822605865960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_38
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 659
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a75aa0ade7c90580800000000000000
+      internalID: -8860330968458045528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_39
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 659
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22b65ba2ffdcc9240800000000000000
+      internalID: 4799937798686993186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_40
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 659
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b31d127644bc286a0800000000000000
+      internalID: -6448368221792644805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_41
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 643
+        width: 201
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3454a06fd737af4f0800000000000000
+      internalID: -794195399441496765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 439
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8786d71ef503476d0800000000000000
+      internalID: -2993714663931418504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_43
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 439
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb820a2795c2bba20800000000000000
+      internalID: 3079103532924676287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_44
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 439
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3170bad6ae54a82c0800000000000000
+      internalID: -4428650410400872685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_45
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 439
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b6208c88e8afe30800000000000000
+      internalID: 4538096292651494234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_46
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 439
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e2c764cb0953f40800000000000000
+      internalID: 5707627241072766487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_47
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 439
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff216b46441240a0800000000000000
+      internalID: -6898929387033251854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 748aa82df69312740800000000000000
+      internalID: 5125441003360790599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_49
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 646e7b3f9228d27e0800000000000000
+      internalID: -1788630360302033338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_50
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1ad6da4c0b1b470800000000000000
+      internalID: 8408696338047148509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_51
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f21813f22eb4f50800000000000000
+      internalID: 6866830749178343226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_52
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 219
+        width: 202
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c44a4c44c9eca060800000000000000
+      internalID: 6966199752938112199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_53
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 203
+        width: 201
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab30e4ca6076d6d40800000000000000
+      internalID: 5579228791740171194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb8ceb769b30f8400800000000000000
+      internalID: 328485392665725115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_55
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0238e22a872443910800000000000000
+      internalID: 1816149635621618464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_56
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 0
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7f4536dfafe7f80800000000000000
+      internalID: -8106766313020131396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_57
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 0
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8097ac54f6548250800000000000000
+      internalID: 5945973015562391694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_58
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 0
+        width: 202
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd3d4e73b3fa5210800000000000000
+      internalID: 1322637392830348720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itemSlotThuoc_59
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 0
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1042e3829854a9430800000000000000
+      internalID: 3790418491773690881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      itemSlotThuoc_0: -3847499520065262784
+      itemSlotThuoc_1: 2889858630866225645
+      itemSlotThuoc_10: -928074164178358420
+      itemSlotThuoc_11: 6649057041280797694
+      itemSlotThuoc_12: 6526984550682218599
+      itemSlotThuoc_13: -8269708660303650921
+      itemSlotThuoc_14: 4807116440494792632
+      itemSlotThuoc_15: -86104291127034713
+      itemSlotThuoc_16: 9007248977101940647
+      itemSlotThuoc_17: -6944196722515865123
+      itemSlotThuoc_18: 3895186629814181758
+      itemSlotThuoc_19: -6184983639081107715
+      itemSlotThuoc_2: -4307491407948703126
+      itemSlotThuoc_20: 7083566478419259845
+      itemSlotThuoc_21: 3083578553262891636
+      itemSlotThuoc_22: -8819152239029334526
+      itemSlotThuoc_23: 3316258656009930290
+      itemSlotThuoc_24: 4155522683426951568
+      itemSlotThuoc_25: -7717047394759786120
+      itemSlotThuoc_26: -8007573267760373781
+      itemSlotThuoc_27: 210141907557208721
+      itemSlotThuoc_28: 8880827384702287740
+      itemSlotThuoc_29: 9027662206052891332
+      itemSlotThuoc_3: 3901383243274261895
+      itemSlotThuoc_30: 3389763800553380278
+      itemSlotThuoc_31: -3354263855223129097
+      itemSlotThuoc_32: -1596364559905159899
+      itemSlotThuoc_33: 6467952293276359961
+      itemSlotThuoc_34: 1667564032239102912
+      itemSlotThuoc_35: 7829003654925766992
+      itemSlotThuoc_36: -3337569879469927513
+      itemSlotThuoc_37: -7778366822605865960
+      itemSlotThuoc_38: -8860330968458045528
+      itemSlotThuoc_39: 4799937798686993186
+      itemSlotThuoc_4: -6181121740393662386
+      itemSlotThuoc_40: -6448368221792644805
+      itemSlotThuoc_41: -794195399441496765
+      itemSlotThuoc_42: -2993714663931418504
+      itemSlotThuoc_43: 3079103532924676287
+      itemSlotThuoc_44: -4428650410400872685
+      itemSlotThuoc_45: 4538096292651494234
+      itemSlotThuoc_46: 5707627241072766487
+      itemSlotThuoc_47: -6898929387033251854
+      itemSlotThuoc_48: 5125441003360790599
+      itemSlotThuoc_49: -1788630360302033338
+      itemSlotThuoc_5: -8118549142266078755
+      itemSlotThuoc_50: 8408696338047148509
+      itemSlotThuoc_51: 6866830749178343226
+      itemSlotThuoc_52: 6966199752938112199
+      itemSlotThuoc_53: 5579228791740171194
+      itemSlotThuoc_54: 328485392665725115
+      itemSlotThuoc_55: 1816149635621618464
+      itemSlotThuoc_56: -8106766313020131396
+      itemSlotThuoc_57: 5945973015562391694
+      itemSlotThuoc_58: 1322637392830348720
+      itemSlotThuoc_59: 3790418491773690881
+      itemSlotThuoc_6: -52922041100765817
+      itemSlotThuoc_7: 6568490313737207785
+      itemSlotThuoc_8: 617454108116419124
+      itemSlotThuoc_9: 6737752475945541395
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

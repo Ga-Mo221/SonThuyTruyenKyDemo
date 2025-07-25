@@ -1,4 +1,3 @@
-using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -19,6 +18,8 @@ public class PlayerManager : MonoBehaviour
     public float _dashTime = 0;
     public float _stamina = 0;
 
+    public Vector3 _respawnPoint;
+
 
     private void Awake()
     {
@@ -33,15 +34,15 @@ public class PlayerManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject); // Giữ lại object này khi chuyển scene
 
-        LoadGameOrCreateNew();
+        loadGameOrCreateNew();
     }
 
-    public void SaveGame()
+    public void saveGame()
     {
         SaveSystem.SavePlayer(Stats);
     }
 
-    public void LoadGameOrCreateNew()
+    public void loadGameOrCreateNew()
     {
         PlayerStats loaded = SaveSystem.LoadPlayer();
         if (loaded != null)
@@ -51,7 +52,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            Stats = CreateNewStats(); // Khi không có save file
+            Stats = createNewStats(); // Khi không có save file
             Debug.Log("Tạo mới nhân vật");
             //SaveGame();
         }
@@ -59,14 +60,14 @@ public class PlayerManager : MonoBehaviour
         _dashTime = Stats._dashingCooldown;
     }
 
-    // cộng thì số dương, giảm thì số âm 
+    // cộng thì số dương, giảm thì số âm %
     public void setAttackSpeed(float number)
     {
         Stats._attackSpeed += number;
         _animManager.setAttackSpeed();
     }
 
-    private PlayerStats CreateNewStats()
+    private PlayerStats createNewStats()
     {
         return new PlayerStats
         {
@@ -77,12 +78,20 @@ public class PlayerManager : MonoBehaviour
             _currentExp = 0f,
             _requiredExp = 100f,
 
+            // Mạng sống
+            _lifeCount = 3,
+            _currentLifeCount = 3,
+
+            // Mana 
+            _maxMana = 100,
+            _currentMana = 100,
+
             // HP
             _maxHealth = 100f,
             _currentHealth = 100f,
 
             // Stamina
-            _stamina = 20000f,
+            _stamina = 200f,
 
             // Move speed
             _walkSpeed = 5f,
@@ -122,9 +131,9 @@ public class PlayerManager : MonoBehaviour
             _xeng = 0,
 
             // Hướng dẫn
-            _tutorialRun = true,
-            _tutorialJump = true,
-            _tutorialSit = true,
+            _tutorialRun = false,
+            _tutorialJump = false,
+            _tutorialSit = false,
             _tutorialAttack = false,
             _tutorialDash = false,
 
@@ -136,10 +145,14 @@ public class PlayerManager : MonoBehaviour
         };
     }
 
-    public void ResetGame() // gọi khi chọn "Chơi mới"
+    public void resetGame() // gọi khi chọn "Chơi mới"
     {
         SaveSystem.DeleteSave();
-        Stats = CreateNewStats();
+        Stats = createNewStats();
+    }
+
+    public void setRespawnPoint(Vector3 pos)
+    {
+        _respawnPoint = pos;
     }
 }
-

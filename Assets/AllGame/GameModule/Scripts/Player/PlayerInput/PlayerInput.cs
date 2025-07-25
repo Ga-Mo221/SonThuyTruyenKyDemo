@@ -14,7 +14,6 @@ public class PlayerInput : MonoBehaviour
     public bool _isAttack { get; private set; }
 
 
-
     private void Update()
     {
         if (PlayerManager.Instance._isAlive && !PlayerManager.Instance._knocked)

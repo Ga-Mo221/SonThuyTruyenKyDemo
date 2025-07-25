@@ -10,6 +10,14 @@ public class PlayerStats
     public float _currentExp; // exp hiện tại
     public float _requiredExp; // exp cần để lên cấp
 
+    // Mạng sống
+    public int _lifeCount;
+    public int _currentLifeCount;
+
+    // Mana 
+    public float _maxMana;
+    public float _currentMana;
+
     // HP
     public float _maxHealth; // máu tối đa
     public float _currentHealth; // máu hiện tại
@@ -151,6 +159,26 @@ public class PlayerStats
             float _damage = damage - _magicResist;
             if (_damage <= 0) _damage = 1;
             _currentHealth -= _damage;
+        }
+    }
+
+    public void lifeCount(bool add)
+    {
+        if (add)
+        {
+            if (_currentLifeCount < _lifeCount)
+            {
+                _currentLifeCount++;
+            }
+        }
+        else
+        {
+            if (_currentLifeCount > 0)
+            {
+                _currentLifeCount--;
+                _currentHealth = _maxHealth;
+                _currentMana = _maxMana;
+            }
         }
     }
 }
