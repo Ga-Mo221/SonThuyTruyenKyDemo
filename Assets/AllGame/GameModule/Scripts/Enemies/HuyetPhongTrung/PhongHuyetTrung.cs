@@ -8,7 +8,7 @@ public class PhongHuyetTrung : EnemyBase
 
     [SerializeField] private float _countdownDuration = 8f;
     [SerializeField] private float _maxMoveSpeedDuringCountdown = 2f;
-    [SerializeField] private float _instantExplodeDistance = 0.8f;
+    [SerializeField] private float _instantExplodeDistance = 1.2f;
     private float countdownTimer = 0f;
 
     // Animator-related state
@@ -18,11 +18,35 @@ public class PhongHuyetTrung : EnemyBase
     private bool isLive = true;
 
     private SpriteRenderer spriteRenderer;
+    private CircleCollider2D instantExplodeCollider; // Thêm collider cho instant explode
 
     protected override void Awake()
     {
         base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        // Tạo trigger collider cho instant explode
+        SetupInstantExplodeCollider();
+    }
+    
+    private void SetupInstantExplodeCollider()
+    {
+        // Tạo GameObject con để chứa trigger collider
+        GameObject triggerObj = new GameObject("InstantExplodeTrigger");
+        triggerObj.transform.SetParent(transform);
+        triggerObj.transform.localPosition = Vector3.zero;
+        
+        // Thêm CircleCollider2D và cấu hình
+        CircleCollider2D collider = triggerObj.AddComponent<CircleCollider2D>();
+        collider.isTrigger = true;
+        collider.radius = _instantExplodeDistance;
+        
+        // Lưu reference
+        instantExplodeCollider = collider;
+        
+        // Thêm script để handle trigger
+        InstantExplodeTrigger triggerScript = triggerObj.AddComponent<InstantExplodeTrigger>();
+        triggerScript.Initialize(this);
     }
     
     protected override void Start()
@@ -42,7 +66,7 @@ public class PhongHuyetTrung : EnemyBase
         base.MoveToPlayer();
         isStay = base._isStay;
         isPatrol = base._isPatrol;
-        CheckExplodeCondition();
+        CheckPlayerDetection();
         UpdateAnimator();
     }
 
@@ -59,38 +83,45 @@ public class PhongHuyetTrung : EnemyBase
         {
             isPatrol = false;
             isStay = false;
-            isClose = (base._distance <= _instantExplodeDistance);
         }
     }
+
     protected override void Patrol()
     {
         base.Patrol();
-        
     }
 
-    private void CheckExplodeCondition()
+    private void CheckPlayerDetection()
     {
-        if (_player == null) return;
+        if (_player == null || hasDetectedPlayer) return;
 
         float distance = Vector3.Distance(transform.position, _player.transform.position);
 
-        if (!hasDetectedPlayer && distance <= _detectionRange)
+        if (distance <= _detectionRange)
         {
             hasDetectedPlayer = true;
+            
+            // Bắt đầu countdown (instant explode sẽ được handle bởi trigger)
             explodeCoroutine = StartCoroutine(ExplodeAfterDelay(_countdownDuration));
             isCountingDown = true;
         }
+    }
 
-        if (hasDetectedPlayer && distance <= _instantExplodeDistance)
+    // Method này được gọi bởi InstantExplodeTrigger
+    public void OnPlayerEnterInstantExplodeZone()
+    {
+        if (!isLive) return;
+        
+        
+        if (explodeCoroutine != null)
         {
-            if (explodeCoroutine != null)
-            {
-                StopCoroutine(explodeCoroutine);
-                explodeCoroutine = null;
-            }
-            countdownTimer = 0f;
-            TriggerExplosion();
+            StopCoroutine(explodeCoroutine);
+            explodeCoroutine = null;
         }
+        
+        countdownTimer = 0f;
+        isCountingDown = false;
+        TriggerExplosion();
     }
 
     private System.Collections.IEnumerator ExplodeAfterDelay(float delay)
@@ -152,13 +183,12 @@ public class PhongHuyetTrung : EnemyBase
         Poison poison = GetComponent<Poison>();
         if (poison != null)
         {
-            poison.ActivatePoison(); // Bắt đầu chu kỳ độc
+            poison.ActivatePoison();
         }
         else
-    {
-        Debug.LogError("Poison component NOT FOUND!"); // Thêm dòng này
-    }
-
+        {
+            Debug.LogError("Poison component NOT FOUND!");
+        }
     }
 
     protected override void Attack()
@@ -177,6 +207,25 @@ public class PhongHuyetTrung : EnemyBase
         if (attack != null)
         {
             TakeDamage();
+        }
+    }
+}
+
+// Script riêng để handle instant explode trigger
+public class InstantExplodeTrigger : MonoBehaviour
+{
+    private PhongHuyetTrung parentEnemy;
+    
+    public void Initialize(PhongHuyetTrung enemy)
+    {
+        parentEnemy = enemy;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && parentEnemy != null)
+        {
+            parentEnemy.OnPlayerEnterInstantExplodeZone();
         }
     }
 }
