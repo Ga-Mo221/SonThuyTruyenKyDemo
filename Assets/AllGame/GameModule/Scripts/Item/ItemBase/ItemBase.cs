@@ -105,11 +105,19 @@ public class RtItem
 public class EquipedItem
 {
     public RtItem _helmet = null;
+    public bool _isHelmet = false;
     public RtItem _armor = null;
+    public bool _isArmor = false;
     public RtItem _boots = null;
+    public bool _isBoots = false;
     public RtItem _accessory = null;
+    public bool _isAccesory = false;
     public RtItem _MeleeWeapon = null;
+    public bool _isMelleWeapon = false;
     public RtItem _RangedWeapon = null;
+    public bool _isRangedWeapon = false;
+    public RtItem _Consumahble = null;
+    public bool _isConsumahble = false;
 
     public void Clear()
     {
@@ -119,6 +127,7 @@ public class EquipedItem
         _accessory = null;
         _MeleeWeapon = null;
         _RangedWeapon = null;
+        _Consumahble = null;
     }
 
     public void equip(RtItem item)
@@ -129,34 +138,46 @@ public class EquipedItem
                 if (_helmet != null) unEquip(item);
                 _helmet = item;
                 item._itemStatus = ItemStatus.Equip;
+                _isHelmet = true;
                 break;
             case ItemType.Armor:
                 if (_armor != null) unEquip(item);
                 _armor = item;
                 item._itemStatus = ItemStatus.Equip;
+                _isArmor = true;
                 break;
             case ItemType.Boots:
                 if (_boots != null) unEquip(item);
                 _boots = item;
                 item._itemStatus = ItemStatus.Equip;
+                _isBoots = true;
                 break;
             case ItemType.Accessory:
                 if (_accessory != null) unEquip(item);
                 _accessory = item;
                 item._itemStatus = ItemStatus.Equip;
+                _isAccesory = true;
                 break;
             case ItemType.Weapon:
                 if (item._baseItem._weaponType == WeaponType.Melee)
                 {
                     if (_MeleeWeapon != null) unEquip(item);
                     _MeleeWeapon = item;
+                    _isMelleWeapon = true;
                 }
                 else if (item._baseItem._weaponType == WeaponType.Ranged)
                 {
                     if (_RangedWeapon != null) unEquip(item);
                     _RangedWeapon = item;
+                    _isRangedWeapon = true;
                 }
                 item._itemStatus = ItemStatus.Equip;
+                break;
+            case ItemType.Consumable:
+                if (_Consumahble != null) unEquip(item);
+                _Consumahble = item;
+                item._itemStatus = ItemStatus.Equip;
+                _isConsumahble = true;
                 break;
         }
     }
@@ -168,30 +189,41 @@ public class EquipedItem
             case ItemType.Helmet:
                 _helmet._itemStatus = ItemStatus.UnEquip;
                 _helmet = null;
+                _isHelmet = false;
                 break;
             case ItemType.Armor:
                 _armor._itemStatus = ItemStatus.UnEquip;
                 _armor = null;
+                _isArmor = false;
                 break;
             case ItemType.Boots:
                 _boots._itemStatus = ItemStatus.UnEquip;
                 _boots = null;
+                _isBoots = false;
                 break;
             case ItemType.Accessory:
                 _accessory._itemStatus = ItemStatus.UnEquip;
                 _accessory = null;
+                _isAccesory = false;
                 break;
             case ItemType.Weapon:
                 if (item._baseItem._weaponType == WeaponType.Melee)
                 {
                     _MeleeWeapon._itemStatus = ItemStatus.UnEquip;
                     _MeleeWeapon = null;
+                    _isMelleWeapon = false;
                 }
                 else if (item._baseItem._weaponType == WeaponType.Ranged)
                 {
                     _RangedWeapon._itemStatus = ItemStatus.UnEquip;
                     _RangedWeapon = null;
+                    _isRangedWeapon = false;
                 }
+                break;
+            case ItemType.Consumable:
+                _Consumahble._itemStatus = ItemStatus.UnEquip;
+                _Consumahble = null;
+                _isConsumahble = false;
                 break;
         }
     }

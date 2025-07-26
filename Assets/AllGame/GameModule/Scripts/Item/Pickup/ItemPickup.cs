@@ -13,12 +13,12 @@ public class ItemPickup : MonoBehaviour
             return;
         }
 
-        InventoryManager.Instance.AddItem(item);
+        InventoryManager.Instance.AddItemInList(item);
     }
 
     void OnMouseDown()
     {
         Pickup();
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

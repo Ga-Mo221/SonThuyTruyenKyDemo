@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2dd66250952a4a408d1aa8b2964f664, type: 3}
+  m_Name: AoVai
+  m_EditorClassIdentifier: 
+  _itemID: Armor3
+  _itemName: "\xC1o V\u1EA3i"
+  _itemIcon: {fileID: 21300000, guid: d5c42ba5d9d00aa4a9374076f827feca, type: 3}
+  _itemType: 1
+  _itemRarity: 0
+  _weaponType: 2
+  _itemDamagePhysical: 0
+  _itemDamgeMagic: 0
+  _itemSpeedAttack: 0
+  _itemSpeedMove: 0
+  _itemHealth: 0
+  _itemcritChancePhysical: 0
+  _itemCritChanceMagic: 0
+  _itemArmor: 0
+  _itemMagicResist: 5
+  _itemCooldownReduction: 0
+  _itemPrice: 300
+  _itemSellPrice: 200
+  _itemCooldownTime: 0

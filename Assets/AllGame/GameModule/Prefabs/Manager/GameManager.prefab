@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6632522468469182625}
   - component: {fileID: 4191049761086580539}
   - component: {fileID: 575398191930856895}
+  - component: {fileID: 8434935177845526713}
+  - component: {fileID: 1169944777352267781}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50,6 +52,10 @@ MonoBehaviour:
     _level: 0
     _currentExp: 0
     _requiredExp: 0
+    _lifeCount: 0
+    _currentLifeCount: 0
+    _maxMana: 0
+    _currentMana: 0
     _maxHealth: 0
     _currentHealth: 0
     _stamina: 0
@@ -75,6 +81,7 @@ MonoBehaviour:
     _tutorialJump: 0
     _tutorialSit: 0
     _tutorialAttack: 0
+    _tutorialDash: 0
     _doubleJump: 0
     _skillQ: 0
     _skillW: 0
@@ -83,6 +90,7 @@ MonoBehaviour:
   _knocked: 0
   _dashTime: 0
   _stamina: 0
+  _respawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &575398191930856895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,5 +101,145 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd9ebed0766ae5a43b4c04ded225c8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8434935177845526713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309983432843348529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e236a8cbad522446bfe5ba2e801df90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allItems: []
+  _rtItemsWeapon: []
+  _rtItemsHelmet: []
+  _rtItemsArmor: []
+  _rtItemsBoots: []
+  _rtItemsAccesory: []
+  _rtItemsConsumahble: []
+  _equipedItem:
+    _helmet:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+    _armor:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+    _boots:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+    _accessory:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+    _MeleeWeapon:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+    _RangedWeapon:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+    _Consumahble:
+      _itemID: 
+      _instanceID: 
+      _itemStatus: 0
+      _bonusDamagePhysical: 0
+      _bonusDamgeMagic: 0
+      _bonusSpeedAttack: 0
+      _bonusSpeedMove: 0
+      _bonusHealth: 0
+      _bonuscritChancePhysical: 0
+      _bonusCritChanceMagic: 0
+      _bonusArmor: 0
+      _bonusMagicResist: 0
+      _bonusCooldownReduction: 0
+      _bonusCooldownTime: 0
+  _inventoryGOJ: {fileID: 0}
+  _itemPrefab: {fileID: 8436074699862447248, guid: 7fe0eb7c242a6e549913b78f7226477c, type: 3}
+  _equeiItemPrefab: {fileID: 4731921118981230689, guid: 1d3fc4b49a032974890f0899b3ff5a00, type: 3}
+--- !u!114 &1169944777352267781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309983432843348529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70fcb9b701a6684380c2e836c1e2ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
