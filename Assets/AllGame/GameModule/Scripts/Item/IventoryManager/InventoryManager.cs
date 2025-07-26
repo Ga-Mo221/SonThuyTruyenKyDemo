@@ -115,53 +115,53 @@ public class InventoryManager : MonoBehaviour
         switch (rtItem._baseItem._itemType)
         {
             case ItemType.Weapon:
-            {
-                if (_rtItemsWeapon.Count < 10)
-                    _rtItemsWeapon.Add(rtItem);
-                else
-                    Debug.Log("Túi đã đầy");
-                break;
-            }
+                {
+                    if (_rtItemsWeapon.Count < 10)
+                        _rtItemsWeapon.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
             case ItemType.Helmet:
-            {
-                if (_rtItemsHelmet.Count < 15)
-                    _rtItemsHelmet.Add(rtItem);
-                else
-                    Debug.Log("Túi đã đầy");
-                break;
-            }
+                {
+                    if (_rtItemsHelmet.Count < 15)
+                        _rtItemsHelmet.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
             case ItemType.Armor:
-            {
-                if (_rtItemsArmor.Count < 15)
-                    _rtItemsArmor.Add(rtItem);
-                else
-                    Debug.Log("Túi đã đầy");
-                break;
-            }
+                {
+                    if (_rtItemsArmor.Count < 15)
+                        _rtItemsArmor.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
             case ItemType.Boots:
-            {
-                if (_rtItemsBoots.Count < 15)
-                    _rtItemsBoots.Add(rtItem);
-                else
-                    Debug.Log("Túi đã đầy");
-                break;
-            }
+                {
+                    if (_rtItemsBoots.Count < 15)
+                        _rtItemsBoots.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
             case ItemType.Accessory:
-            {
-                if (_rtItemsAccesory.Count < 15)
-                    _rtItemsAccesory.Add(rtItem);
-                else
-                    Debug.Log("Túi đã đầy");
-                break;
-            }
+                {
+                    if (_rtItemsAccesory.Count < 15)
+                        _rtItemsAccesory.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
             case ItemType.Consumable:
-            {
-                if (_rtItemsConsumahble.Count < 60)
-                    _rtItemsConsumahble.Add(rtItem);
-                else
-                    Debug.Log("Túi đã đầy");
-                break;
-            }
+                {
+                    if (_rtItemsConsumahble.Count < 60)
+                        _rtItemsConsumahble.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
         }
         DisplayInventory();
     }
@@ -172,40 +172,40 @@ public class InventoryManager : MonoBehaviour
         switch (item._baseItem._itemType)
         {
             case ItemType.Weapon:
-            {
-                _rtItemsWeapon.Remove(item);
-                break;
-            }
+                {
+                    _rtItemsWeapon.Remove(item);
+                    break;
+                }
             case ItemType.Helmet:
-            {
-                _rtItemsHelmet.Remove(item);
-                Debug.Log("Đã xóa Item ra khỏi túi");
-                break;
-            }
+                {
+                    _rtItemsHelmet.Remove(item);
+                    Debug.Log("Đã xóa Item ra khỏi túi");
+                    break;
+                }
             case ItemType.Armor:
-            {
-                _rtItemsArmor.Remove(item);
-                Debug.Log("Đã xóa Item ra khỏi túi");
-                break;
-            }
+                {
+                    _rtItemsArmor.Remove(item);
+                    Debug.Log("Đã xóa Item ra khỏi túi");
+                    break;
+                }
             case ItemType.Boots:
-            {
-                _rtItemsBoots.Remove(item);
-                Debug.Log("Đã xóa Item ra khỏi túi");
-                break;
-            }
+                {
+                    _rtItemsBoots.Remove(item);
+                    Debug.Log("Đã xóa Item ra khỏi túi");
+                    break;
+                }
             case ItemType.Accessory:
-            {
-                _rtItemsAccesory.Remove(item);
-                Debug.Log("Đã xóa Item ra khỏi túi");
-                break;
-            }
+                {
+                    _rtItemsAccesory.Remove(item);
+                    Debug.Log("Đã xóa Item ra khỏi túi");
+                    break;
+                }
             case ItemType.Consumable:
-            {
-                _rtItemsConsumahble.Remove(item);
-                Debug.Log("Đã xóa Item ra khỏi túi");
-                break;
-            }
+                {
+                    _rtItemsConsumahble.Remove(item);
+                    Debug.Log("Đã xóa Item ra khỏi túi");
+                    break;
+                }
         }
         DisplayInventory();
     }
@@ -332,49 +332,49 @@ public class InventoryManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (_equipedItem._helmet != null)
+        if (_equipedItem._isHelmet)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _HelmetPos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             _itemIcon.sprite = _equipedItem._helmet._baseItem._itemIcon;
             obj.GetComponent<ItemUiController>().setRtItem(_equipedItem._helmet);
         }
-        if (_equipedItem._armor != null)
+        if (_equipedItem._isArmor)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _ArmorPos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             _itemIcon.sprite = _equipedItem._armor._baseItem._itemIcon;
             obj.GetComponent<ItemUiController>().setRtItem(_equipedItem._armor);
         }
-        if (_equipedItem._boots != null)
+        if (_equipedItem._isBoots)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _BootsPos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             _itemIcon.sprite = _equipedItem._boots._baseItem._itemIcon;
             obj.GetComponent<ItemUiController>().setRtItem(_equipedItem._boots);
         }
-        if (_equipedItem._accessory != null)
+        if (_equipedItem._isAccesory)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _AccessoryPos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             _itemIcon.sprite = _equipedItem._accessory._baseItem._itemIcon;
             obj.GetComponent<ItemUiController>().setRtItem(_equipedItem._accessory);
         }
-        if (_equipedItem._MeleeWeapon != null)
+        if (_equipedItem._isMelleWeapon)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _MeleeWeaponPos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             _itemIcon.sprite = _equipedItem._MeleeWeapon._baseItem._itemIcon;
             obj.GetComponent<ItemUiController>().setRtItem(_equipedItem._MeleeWeapon);
         }
-        if (_equipedItem._RangedWeapon != null)
+        if (_equipedItem._isRangedWeapon)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _RangedWeaponPos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             _itemIcon.sprite = _equipedItem._RangedWeapon._baseItem._itemIcon;
             obj.GetComponent<ItemUiController>().setRtItem(_equipedItem._RangedWeapon);
         }
-        if (_equipedItem._Consumahble != null)
+        if (_equipedItem._isConsumahble)
         {
             GameObject obj = Instantiate(_equeiItemPrefab, _ConsumahblePos.position, Quaternion.identity, _EqueiItemUI);
             var _itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
