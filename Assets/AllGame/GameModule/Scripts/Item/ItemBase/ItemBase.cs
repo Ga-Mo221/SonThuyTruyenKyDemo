@@ -51,11 +51,12 @@ public class Item : ScriptableObject
     public float _itemcritChancePhysical;
     public float _itemCritChanceMagic;
     public float _itemArmor;
+    public float _itemPhysicRes;
     public float _itemMagicResist;
     public float _itemCooldownReduction;
     public int _itemPrice;
     public int _itemSellPrice;
-    public float _itemCooldownTime;
+    public float _itemCooldownTime; // thời gian hồi chiêu cua item tieu hao
 }
 
 [System.Serializable]
@@ -72,9 +73,9 @@ public class RtItem
     public float _bonuscritChancePhysical = 0f;
     public float _bonusCritChanceMagic = 0f;
     public float _bonusArmor = 0f;
+    public float _bonusPhysicRes = 0f;
     public float _bonusMagicResist = 0f;
     public float _bonusCooldownReduction = 0f; // giảm thời gian hồi chiêu
-    public float _bonusCooldownTime = 0f; // thời gian hồi chiêu
 
     [System.NonSerialized]
     public Item _baseItem;

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -237,6 +236,7 @@ public class InventoryManager : MonoBehaviour
     public void Equip(RtItem item)
     {
         _equipedItem.equip(item);
+        ApplyItem(item, true);
         DisplayInventory();
         DisplayEquipedIetm();
     }
@@ -245,8 +245,57 @@ public class InventoryManager : MonoBehaviour
     public void UnEquip(RtItem item)
     {
         _equipedItem.unEquip(item);
+        ApplyItem(item, false);
         DisplayInventory();
         DisplayEquipedIetm();
+    }
+
+    private void ApplyItem(RtItem item, bool equip)
+    {
+        float _physic = item._baseItem._itemDamagePhysical + item._bonusDamagePhysical;
+        float _magic = item._baseItem._itemDamgeMagic + item._bonusDamgeMagic;
+        float _attackSpeed = item._baseItem._itemSpeedAttack + item._bonusSpeedAttack;
+        float _moveSpeed = item._baseItem._itemSpeedMove + item._bonusSpeedMove;
+        float _health = item._baseItem._itemHealth + item._bonusHealth;
+        float _critPhysic = item._baseItem._itemCritChanceMagic + item._bonusCritChanceMagic;
+        float _critMagic = item._baseItem._itemcritChancePhysical + item._bonuscritChancePhysical;
+        float _armor = item._baseItem._itemArmor + item._bonusArmor;
+        float _physicRes = item._baseItem._itemPhysicRes + item._bonusPhysicRes;
+        float _magicRes = item._baseItem._itemMagicResist + item._bonusMagicResist;
+        float _cooldown = item._baseItem._itemCooldownReduction + item._bonusCooldownReduction;
+        if (equip)
+        {
+            PlayerManager.Instance.Stats._physicalDamage += _physic;
+            PlayerManager.Instance.Stats._magicDamage += _magic;
+            PlayerManager.Instance.Stats._runSpeed += _moveSpeed;
+            PlayerManager.Instance.Stats._walkSpeed += _moveSpeed;
+            PlayerManager.Instance.Stats._attackSpeed += _attackSpeed;
+            PlayerManager.Instance.Stats._maxHealth += _health;
+            PlayerManager.Instance.Stats._currentHealth += _health;
+            PlayerManager.Instance.Stats._critChancePhysical += _critPhysic;
+            PlayerManager.Instance.Stats._critChanceMagic += _critMagic;
+            PlayerManager.Instance.Stats._armor += _armor;
+            PlayerManager.Instance.Stats._physicalDefense += _physicRes;
+            PlayerManager.Instance.Stats._magicResist += _magicRes;
+            PlayerManager.Instance.Stats._cooldownReduction += _cooldown;
+        }
+        else
+        {
+            PlayerManager.Instance.Stats._physicalDamage -= _physic;
+            PlayerManager.Instance.Stats._magicDamage -= _magic;
+            PlayerManager.Instance.Stats._runSpeed -= _moveSpeed;
+            PlayerManager.Instance.Stats._walkSpeed -= _moveSpeed;
+            PlayerManager.Instance.Stats._attackSpeed -= _attackSpeed;
+            PlayerManager.Instance.Stats._maxHealth -= _health;
+            PlayerManager.Instance.Stats._currentHealth -= _health;
+            PlayerManager.Instance.Stats._critChancePhysical -= _critPhysic;
+            PlayerManager.Instance.Stats._critChanceMagic -= _critMagic;
+            PlayerManager.Instance.Stats._armor -= _armor;
+            PlayerManager.Instance.Stats._physicalDefense -= _physicRes;
+            PlayerManager.Instance.Stats._magicResist -= _magicRes;
+            PlayerManager.Instance.Stats._cooldownReduction -= _cooldown;
+        }
+        PlayerManager.Instance.setAttackSpeed();
     }
 
 
