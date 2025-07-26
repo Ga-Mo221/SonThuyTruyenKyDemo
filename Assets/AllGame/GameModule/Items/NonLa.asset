@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2dd66250952a4a408d1aa8b2964f664, type: 3}
+  m_Name: NonLa
+  m_EditorClassIdentifier: 
+  _itemID: Helmet3
+  _itemName: "N\xF3n L\xE1"
+  _itemIcon: {fileID: 21300000, guid: e0054df9d1d70484c9afc895e0fa4e1b, type: 3}
+  _itemType: 0
+  _itemRarity: 0
+  _weaponType: 2
+  _itemDamagePhysical: 0
+  _itemDamgeMagic: 0
+  _itemSpeedAttack: 0
+  _itemSpeedMove: 0
+  _itemHealth: 0
+  _itemcritChancePhysical: 0
+  _itemCritChanceMagic: 0
+  _itemArmor: 10
+  _itemMagicResist: 0
+  _itemCooldownReduction: 0
+  _itemPrice: 350
+  _itemSellPrice: 200
+  _itemCooldownTime: 0

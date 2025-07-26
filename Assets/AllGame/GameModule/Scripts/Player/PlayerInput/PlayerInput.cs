@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] private Transform _Profile;
+    private GameObject _inventoryMenu;
+
     public float _moveInput { get; private set; }
     public bool _isMoving { get; private set; }
     public bool _isRunning { get; private set; }
@@ -13,6 +15,14 @@ public class PlayerInput : MonoBehaviour
     public bool _isJump { get; private set; }
     public bool _isAttack { get; private set; }
 
+    void Start()
+    {
+        if (_Profile == null)
+        {
+            Debug.LogError("Chưa gắn Profile và prefab Player/PlayerInput");
+        }
+        _inventoryMenu = _Profile.Find("InventoryMenu").gameObject;
+    }
 
     private void Update()
     {
@@ -26,6 +36,7 @@ public class PlayerInput : MonoBehaviour
                 handleAttack();
             handleMove();
         }
+        OpenInventory();
     }
 
     // move
@@ -184,5 +195,22 @@ public class PlayerInput : MonoBehaviour
     {
         yield return new WaitForSeconds(_canAttackCooldown);
         _canAttack = true;
+    }
+
+
+
+
+    // inventory
+    private void OpenInventory()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && PlayerManager.Instance._isAlive)
+        {
+            bool isActive = _inventoryMenu.activeSelf;
+            _inventoryMenu.SetActive(!isActive);
+            if (!isActive)
+                PlayerManager.Instance._knocked = true;
+            else
+                PlayerManager.Instance._knocked = false;
+        }
     }
 }

@@ -36,8 +36,8 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler
 
     public void removeUIItem()
     {
-        InventoryManager.Instance._rtItems.Remove(_rtItem);
-        Destroy(gameObject);
+        // InventoryManager.Instance._rtItems.Remove(_rtItem);
+        // Destroy(gameObject);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -61,11 +61,8 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler
     {
         _overlay.gameObject.SetActive(true);
         Vector3 _pos = _displayPos.position;
-        if (_rtItem._itemStatus == ItemStatus.UnEquip)
-        {
-            GameObject _inventoryContextMenu = Instantiate(_contextMenuPrefab, _pos, Quaternion.identity, _overlay);
-            _overlay.GetComponent<OverlayClick>().SetContextMenu(_inventoryContextMenu.GetComponent<ContextMenuController>());
-            _inventoryContextMenu.GetComponent<ContextMenuController>().setRtItem(_rtItem);
-        }
+        GameObject _inventoryContextMenu = Instantiate(_contextMenuPrefab, _pos, Quaternion.identity, _overlay);
+        _overlay.GetComponent<OverlayClick>().SetContextMenu(_inventoryContextMenu.GetComponent<ContextMenuController>());
+        _inventoryContextMenu.GetComponent<ContextMenuController>().setRtItem(_rtItem, true);
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 
 public class OverlayClick : MonoBehaviour, IPointerClickHandler
 {
-    public ContextMenuController _contextMenu;
-    public GameObject Overlay;
+    private ContextMenuController _contextMenu;
+    //private GameObject Overlay;
 
     public void SetContextMenu(ContextMenuController contextMenu)
     {

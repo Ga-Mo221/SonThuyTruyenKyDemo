@@ -110,6 +110,7 @@ public class EquipedItem
     public RtItem _accessory = null;
     public RtItem _MeleeWeapon = null;
     public RtItem _RangedWeapon = null;
+    public RtItem _Consumahble = null;
 
     public void Clear()
     {
@@ -119,6 +120,7 @@ public class EquipedItem
         _accessory = null;
         _MeleeWeapon = null;
         _RangedWeapon = null;
+        _Consumahble = null;
     }
 
     public void equip(RtItem item)
@@ -158,6 +160,11 @@ public class EquipedItem
                 }
                 item._itemStatus = ItemStatus.Equip;
                 break;
+            case ItemType.Consumable:
+                if (_Consumahble != null) unEquip(item);
+                _Consumahble = item;
+                item._itemStatus = ItemStatus.Equip;
+                break;
         }
     }
 
@@ -192,6 +199,10 @@ public class EquipedItem
                     _RangedWeapon._itemStatus = ItemStatus.UnEquip;
                     _RangedWeapon = null;
                 }
+                break;
+            case ItemType.Consumable:
+                _Consumahble._itemStatus = ItemStatus.UnEquip;
+                _Consumahble = null;
                 break;
         }
     }
