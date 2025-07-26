@@ -1,5 +1,8 @@
 using UnityEngine;
 
+// xử lí lại flip enemy khi phát hiện người chơi
+// xử lí nổ (đếm ngược) sau khi người chơi rời khỏi vùng phát hiện
+
 public class PhongHuyetTrung : EnemyBase
 {
     private Coroutine explodeCoroutine;
@@ -7,9 +10,15 @@ public class PhongHuyetTrung : EnemyBase
     private bool hasDetectedPlayer = false;
 
     [SerializeField] private float _countdownDuration = 8f;
-    [SerializeField] private float _maxMoveSpeedDuringCountdown = 2f;
+    [SerializeField] private float _maxMoveSpeedDuringCountdown = 10f; // Tăng tốc độ tối đa
     [SerializeField] private float _instantExplodeDistance = 1.2f;
+    [SerializeField] private float _speedMultiplierCurve = 2f; // Độ cong của đường tăng tốc
     private float countdownTimer = 0f;
+
+    private float originalMoveSpeed;
+    private float originalRunSpeed;
+    // Lưu reference đến player để không bị mất
+    private GameObject rememberedPlayer;
 
     // Animator-related state
     private bool isClose = false;
@@ -18,37 +27,34 @@ public class PhongHuyetTrung : EnemyBase
     private bool isLive = true;
 
     private SpriteRenderer spriteRenderer;
-    private CircleCollider2D instantExplodeCollider; // Thêm collider cho instant explode
+    private CircleCollider2D instantExplodeCollider;
 
     protected override void Awake()
     {
         base.Awake();
+        _canFly = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        // Tạo trigger collider cho instant explode
+        originalMoveSpeed = _enemyMoveSpd; // Lưu tốc độ gốc
+        originalRunSpeed = _enemyRunSpd;
         SetupInstantExplodeCollider();
     }
-    
+
     private void SetupInstantExplodeCollider()
     {
-        // Tạo GameObject con để chứa trigger collider
         GameObject triggerObj = new GameObject("InstantExplodeTrigger");
         triggerObj.transform.SetParent(transform);
         triggerObj.transform.localPosition = Vector3.zero;
-        
-        // Thêm CircleCollider2D và cấu hình
+
         CircleCollider2D collider = triggerObj.AddComponent<CircleCollider2D>();
         collider.isTrigger = true;
         collider.radius = _instantExplodeDistance;
-        
-        // Lưu reference
+
         instantExplodeCollider = collider;
-        
-        // Thêm script để handle trigger
+
         InstantExplodeTrigger triggerScript = triggerObj.AddComponent<InstantExplodeTrigger>();
         triggerScript.Initialize(this);
     }
-    
+
     protected override void Start()
     {
         base.Start();
@@ -62,65 +68,117 @@ public class PhongHuyetTrung : EnemyBase
     protected override void Update()
     {
         base.Update();
+
         if (!isLive) return;
-        base.MoveToPlayer();
-        isStay = base._isStay;
-        isPatrol = base._isPatrol;
+
+        // Lưu lại player reference khi phát hiện lần đầu
+        if (_player != null && !hasDetectedPlayer)
+        {
+            rememberedPlayer = _player;
+        }
+
         CheckPlayerDetection();
+
+        // Sau khi đã phát hiện player, luôn ở trạng thái đuổi theo
+        if (hasDetectedPlayer)
+        {
+            isStay = false;
+            isPatrol = false;
+
+            // Override _player bằng rememberedPlayer để không bị mất
+            if (rememberedPlayer != null)
+            {
+                _player = rememberedPlayer;
+            }
+        }
+        else
+        {
+            // Chỉ patrol khi chưa phát hiện player
+            isStay = base._isStay;
+            isPatrol = base._isPatrol;
+        }
+
         UpdateAnimator();
     }
 
-    protected override void MoveToPlayer()
+    protected override void moveToPlayer()
     {
-        base.MoveToPlayer();
+        // Sau khi đã phát hiện player, luôn cố gắng di chuyển đến player (dù player có ra khỏi tầm hay không)
+        if (hasDetectedPlayer && rememberedPlayer != null)
+        {
+            _player = rememberedPlayer;
+
+            // Tính toán tốc độ dựa trên countdown
+            CalculateSpeedBasedOnCountdown();
+
+            base.moveToPlayer();
+        }
+        else if (!hasDetectedPlayer)
+        {
+            base._enemyRunSpd = originalRunSpeed;
+            base.moveToPlayer();
+        }
+    }
+
+    private void CalculateSpeedBasedOnCountdown()
+    {
         if (isCountingDown && _countdownDuration > 0f)
         {
-            float progress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
-            base._enemyMoveSpd = Mathf.Lerp(base._enemyMoveSpd, _maxMoveSpeedDuringCountdown, progress);
-        }
+            // Tính toán progress: 0 = mới bắt đầu, 1 = sắp nổ
+            float timeProgress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
 
-        if (hasDetectedPlayer)
+            // Sử dụng curve để tạo hiệu ứng tăng tốc mượt mà hơn
+            // Pow càng cao thì tăng tốc càng chậm ở đầu, nhanh ở cuối
+            float curvedProgress = Mathf.Pow(timeProgress, _speedMultiplierCurve);
+
+            // Tính tốc độ mới
+            float newSpeed = Mathf.Lerp(originalMoveSpeed, _maxMoveSpeedDuringCountdown, curvedProgress);
+            base._enemyRunSpd = newSpeed;
+        }
+        else
         {
-            isPatrol = false;
-            isStay = false;
+            base._enemyRunSpd = originalRunSpeed;
         }
     }
 
     protected override void Patrol()
     {
+        base._enemyMoveSpd = originalMoveSpeed;
         base.Patrol();
     }
 
     private void CheckPlayerDetection()
     {
-        if (_player == null || hasDetectedPlayer) return;
+        bool playerInRange = _player != null &&
+                           Vector3.Distance(transform.position, _player.transform.position) <= _detectionRange;
 
-        float distance = Vector3.Distance(transform.position, _player.transform.position);
-
-        if (distance <= _detectionRange)
+        // Nếu player vào tầm phát hiện lần đầu
+        if (playerInRange && !hasDetectedPlayer)
         {
             hasDetectedPlayer = true;
-            
-            // Bắt đầu countdown (instant explode sẽ được handle bởi trigger)
+            rememberedPlayer = _player; // Lưu lại player reference
             explodeCoroutine = StartCoroutine(ExplodeAfterDelay(_countdownDuration));
             isCountingDown = true;
         }
+
     }
 
-    // Method này được gọi bởi InstantExplodeTrigger
     public void OnPlayerEnterInstantExplodeZone()
     {
         if (!isLive) return;
-        
-        
+
         if (explodeCoroutine != null)
         {
             StopCoroutine(explodeCoroutine);
             explodeCoroutine = null;
         }
-        
+
         countdownTimer = 0f;
         isCountingDown = false;
+
+        // Set tốc độ về tối đa khi sắp nổ ngay
+        base._enemyRunSpd = _maxMoveSpeedDuringCountdown;
+
         TriggerExplosion();
     }
 
@@ -130,8 +188,18 @@ public class PhongHuyetTrung : EnemyBase
         float flashInterval = 0.2f;
         bool flashRed = true;
 
+        // Tính toán khoảng thời gian flash ngắn dần (tạo cảm giác gấp gáp)
+        float initialFlashInterval = 0.5f;
+        float finalFlashInterval = 0.1f;
+
         while (countdownTimer > 0)
         {
+            // Tính progress để điều chỉnh flash speed
+            float timeProgress = Mathf.Clamp01(1f - (countdownTimer / delay));
+
+            // Flash nhanh dần khi gần nổ
+            flashInterval = Mathf.Lerp(initialFlashInterval, finalFlashInterval, timeProgress);
+
             if (spriteRenderer != null)
                 spriteRenderer.color = flashRed ? Color.red : Color.white;
 
@@ -139,19 +207,26 @@ public class PhongHuyetTrung : EnemyBase
 
             yield return new WaitForSeconds(flashInterval);
             countdownTimer -= flashInterval;
+
+            // Cập nhật tốc độ liên tục trong countdown
+            if (hasDetectedPlayer)
+            {
+                CalculateSpeedBasedOnCountdown();
+            }
         }
 
         if (spriteRenderer != null)
             spriteRenderer.color = Color.white;
 
+        // Luôn nổ sau khi hết thời gian countdown
         TriggerExplosion();
     }
 
     private void TriggerExplosion()
     {
-        if (_player != null)
+        if (rememberedPlayer != null)
         {
-            float distance = Vector3.Distance(transform.position, _player.transform.position);
+            float distance = Vector3.Distance(transform.position, rememberedPlayer.transform.position);
             if (distance <= _enemyAttackRange)
             {
                 isClose = true;
@@ -193,7 +268,7 @@ public class PhongHuyetTrung : EnemyBase
 
     protected override void Attack()
     {
-        HealthManager health = _player.GetComponent<HealthManager>();
+        HealthManager health = rememberedPlayer.GetComponent<HealthManager>();
         if (health != null)
         {
             health.takeDamage(1, base._enemyPhysicalDamage, false);
@@ -201,14 +276,6 @@ public class PhongHuyetTrung : EnemyBase
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        BasicAttack attack = collision.GetComponent<BasicAttack>();
-        if (attack != null)
-        {
-            TakeDamage();
-        }
-    }
 }
 
 // Script riêng để handle instant explode trigger

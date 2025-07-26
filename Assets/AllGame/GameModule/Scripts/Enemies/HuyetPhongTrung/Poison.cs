@@ -73,7 +73,6 @@ public class Poison : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f); // Đợi animation bắt đầu
 
-        // 3. Bật collider trước khi set active
         if (_triggerCollider != null)
         {
             _triggerCollider.enabled = true;
@@ -179,7 +178,6 @@ public class Poison : MonoBehaviour
     private GameObject GetPlayerObject(Collider2D collision)
     {
         
-        // Sử dụng logic giống EnemyBase.cs - tìm parent có tên "Player"
         Transform current = collision.transform;
         while (current != null)
         {
@@ -217,8 +215,6 @@ public class Poison : MonoBehaviour
             }
 
             Debug.Log($"Applying poison damage to {playerObj.name}: damage = {_poisonDamage}");
-            
-            // Gọi takeDamage với parameters đúng format
             health.takeDamage(0, _poisonDamage, true);
             
             Debug.Log($"Poison damage applied: {t + 1} seconds");
