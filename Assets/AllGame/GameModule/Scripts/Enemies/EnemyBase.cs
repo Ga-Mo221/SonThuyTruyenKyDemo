@@ -44,6 +44,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float _patrolWaitDuration = 2f;
     [SerializeField] protected float _knockbackForce = 300f;
     [SerializeField] protected float _knockbackDuration = 0.2f;
+    protected Coroutine _knockbackRoutine;
+
 
     protected virtual void Awake()
     {
@@ -237,21 +239,26 @@ public abstract class EnemyBase : MonoBehaviour
     protected void knockbackFromPlayer()
     {
         if (_player == null || _rb == null || _isKnockedBack) return;
+
         Vector2 dir = ((Vector2)transform.position - (Vector2)_player.transform.position).normalized;
-        _rb.AddForce(dir * _knockbackForce);
-        _isKnockedBack = true;
-        StartCoroutine(knockbackCoroutine());
+        _rb.linearVelocity = Vector2.zero;
+        _rb.AddForce(dir * _knockbackForce, ForceMode2D.Impulse);
+
+        if (_knockbackRoutine != null)
+            StopCoroutine(_knockbackRoutine);
+        _knockbackRoutine = StartCoroutine(knockbackCoroutine());
     }
-    
+
+
     // Hàm xử lí thời gian bị đẩy lùi
     protected IEnumerator knockbackCoroutine()
     {
-        enabled = false;
+        _isKnockedBack = true;
         yield return new WaitForSeconds(_knockbackDuration);
         _rb.linearVelocity = Vector2.zero;
         _isKnockedBack = false;
-        enabled = true;
     }
+
 
     // Hàm xử lí Anim Die của enemy
     public virtual void Die()

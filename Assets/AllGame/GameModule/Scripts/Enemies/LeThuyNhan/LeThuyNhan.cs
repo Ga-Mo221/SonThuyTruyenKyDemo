@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LeThuyNhan : EnemyBase
@@ -33,7 +34,7 @@ public class LeThuyNhan : EnemyBase
 
     protected override void FixedUpdate()
     {
-        if (!_isLive || _isAttacking || _isHurt) return;
+        if (!_isLive || _isAttacking || _isHurt || _isKnockedBack) return;
 
         base.FixedUpdate();
     }
@@ -45,7 +46,7 @@ public class LeThuyNhan : EnemyBase
 
         float distance = Vector2.Distance(transform.position, _player.transform.position);
         // Tấn công nếu đủ gần
-        if (_canAttack && distance <= _enemyAttackRange)
+        if (_canAttack && !_isKnockedBack && distance <= _enemyAttackRange)
         {
             Attack();
         }
@@ -58,6 +59,9 @@ public class LeThuyNhan : EnemyBase
         _canAttack = false;
         _rb.linearVelocity = Vector2.zero;
         _animator.SetTrigger("isAttack");
+
+        // tự set attack về false nếu event anin bị lỗi
+        StartCoroutine(FallbackAttackReset());
     }
 
     // Hàm nhận Dmg
@@ -67,7 +71,6 @@ public class LeThuyNhan : EnemyBase
 
         base.takeDamage(); // xử lý knockback
         _isHurt = true;
-        _rb.linearVelocity = Vector2.zero;
         _animator.SetTrigger("isHurt");
     }
 
@@ -107,6 +110,17 @@ public class LeThuyNhan : EnemyBase
         }
     }
 
+    // Hàm ép reset các trạng thái của Attack nếu event anim bị lỗi
+    private IEnumerator FallbackAttackReset()
+    {
+        yield return new WaitForSeconds(1f); // thời gian animation attack
+        if (_isAttacking)
+        {
+            _isAttacking = false;
+            _canAttack = true;
+        }
+    }
+    
     // Gọi từ animation event khi animation tấn công kết thúc
     public void onAttackFinished()
     {
