@@ -20,12 +20,13 @@ MonoBehaviour:
   _weaponType: 2
   _itemDamagePhysical: 0
   _itemDamgeMagic: 0
-  _itemSpeedAttack: 0
+  _itemSpeedAttack: 100
   _itemSpeedMove: 0
   _itemHealth: 0
   _itemcritChancePhysical: 0
   _itemCritChanceMagic: 0
   _itemArmor: 5
+  _itemPhysicRes: 0
   _itemMagicResist: 0
   _itemCooldownReduction: 0
   _itemPrice: 300

@@ -61,9 +61,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     // cộng thì số dương, giảm thì số âm %
-    public void setAttackSpeed(float number)
+    public void setAttackSpeed()
     {
-        Stats._attackSpeed += number;
+        //Stats._attackSpeed += number;
         _animManager.setAttackSpeed();
     }
 

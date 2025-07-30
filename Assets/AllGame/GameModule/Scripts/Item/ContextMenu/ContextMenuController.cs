@@ -73,6 +73,7 @@ public class ContextMenuController : MonoBehaviour
     public void removeButton()
     {
         Debug.Log("Đã xóa Trang bị " + _rtItem._baseItem._itemName);
+        InventoryManager.Instance.RemoveItemInList(_rtItem);
         CloseContextMenu();
     }
 
