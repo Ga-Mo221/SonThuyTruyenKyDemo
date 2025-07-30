@@ -784,7 +784,7 @@ Transform:
   m_GameObject: {fileID: 6586467050930943969}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: -3.32, z: 0}
+  m_LocalPosition: {x: -0.1, y: -3.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5af331af36f814eb6b22ae52b1ed11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Profile: {fileID: 0}
   _canAttack: 1
 --- !u!114 &7836252420095696633
 MonoBehaviour:
@@ -1071,6 +1072,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rada: {fileID: 4499172690255922009}
+  _damagePrefab: {fileID: 3036619626097505380, guid: 5f5442537ac52624cb7488a0d2453d37, type: 3}
+  _displayDamageTextPos: {fileID: 0}
 --- !u!114 &4941833371084961983
 MonoBehaviour:
   m_ObjectHideFlags: 0

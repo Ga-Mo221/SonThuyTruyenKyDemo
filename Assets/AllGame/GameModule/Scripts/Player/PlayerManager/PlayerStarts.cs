@@ -145,21 +145,23 @@ public class PlayerStats
         return _damage;
     }
 
-    public void takeDamage(float damage, bool magic)
+    public float takeDamage(float damage, bool magic)
     {
+        float _damage = 0;
         if (!magic)
         {
-            float _damage = damage * (1f - _physicalDefense / 100f);
+            _damage = damage * (1f - _physicalDefense / 100f);
             _damage = _damage - _armor;
             if (_damage <= 0) _damage = 1;
             _currentHealth -= _damage;
         }
         else
         {
-            float _damage = damage - _magicResist;
+            _damage = damage - _magicResist;
             if (_damage <= 0) _damage = 1;
             _currentHealth -= _damage;
         }
+        return _damage;
     }
 
     public void lifeCount(bool add)
@@ -177,7 +179,6 @@ public class PlayerStats
             {
                 _currentLifeCount--;
                 _currentHealth = _maxHealth;
-                _currentMana = _maxMana;
             }
         }
     }

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: cd824a4fe305b68447e3c2d77383fb9d8d90c352d7f4ac20f9995728f7c3411dc555d8dc550f58d159c5512e0000000043fcc458115ed931bf22a8ed
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 800552953401280411}
   - component: {fileID: 4293726605360058132}
   - component: {fileID: 8114035179318341955}
+  - component: {fileID: 3997724659082635098}
   m_Layer: 5
   m_Name: "Gi\xE0y v\u1EA3i r\xE1ch"
   m_TagString: Untagged
@@ -161,8 +162,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -307748161
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1e3a8a40fb62a34f81e4130adbf73ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -266,3 +267,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: e173e736915cf4f4ea640c716e840b80, type: 2}
+--- !u!114 &3997724659082635098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077171148660825449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04b274bf08a56a478a35a4ec9c03b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flyPower: 7
+  _item: 1
+  _collider: {fileID: 0}
+  _dropTime: 0
+  _moveSpeedToPlayer: 0
+  _coin: 1
+  _XengValue: 0
+  _LinhAnValue: 0

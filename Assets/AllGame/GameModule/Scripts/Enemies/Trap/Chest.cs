@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Chest : MonoBehaviour
@@ -7,6 +9,19 @@ public class Chest : MonoBehaviour
 
     private bool _canOpen;
     private bool _isOpened = false;
+
+    public bool _isXeng = false;
+    [ShowIf(nameof(_isXeng))]
+    [SerializeField] private int _xengCount = 0;
+
+    public bool _isItems = false;
+    [ShowIf(nameof(_isItems))]
+    [SerializeField] private List<GameObject> _allItemPrefab;
+
+    public bool _showPrefab = false;
+    [ShowIf(nameof(_showPrefab))]
+    [SerializeField] private GameObject _xengPrefab;
+    [SerializeField] private Transform _parrent;
 
     void Awake()
     {
@@ -25,7 +40,23 @@ public class Chest : MonoBehaviour
             _isOpened = true;
             F.SetActive(false);
             _anim.SetTrigger("open");
-            PlayerManager.Instance.Stats._xeng += 100;
+
+            if (_isXeng)
+            {
+                int _xengValue = _xengPrefab.GetComponent<CurrencyDisplay>()._XengValue;
+
+                for (int i = 0; i < _xengCount / _xengValue; i++)
+                {
+                    Instantiate(_xengPrefab, transform.position, Quaternion.identity, _parrent);
+                }
+            }
+            if (_isItems)
+            {
+                foreach (var item in _allItemPrefab)
+                {
+                    Instantiate(item, transform.position, Quaternion.identity, _parrent);
+                }
+            }
         }
     }
 

@@ -6,7 +6,8 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get; private set; }
 
     // player
-    [SerializeField] private PlayerAnimationManager _animManager;
+    [SerializeField] private GameObject _player;
+    private PlayerAnimationManager _animManager;
 
     // Dữ liệu chỉ số nhân vật chính
     public PlayerStats Stats = new PlayerStats();
@@ -14,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     // player state
     public bool _isAlive = true; // còn sống
     public bool _knocked = false; // bị trúng đòn
+    public bool _canMoveAttack = false; // có thể di chuyển khi tấn công
 
     public float _dashTime = 0;
     public float _stamina = 0;
@@ -35,6 +37,10 @@ public class PlayerManager : MonoBehaviour
         DontDestroyOnLoad(gameObject); // Giữ lại object này khi chuyển scene
 
         loadGameOrCreateNew();
+        if (_player == null)
+            Debug.LogError("chưa gắn player vào");
+        else
+            _animManager = _player.GetComponent<PlayerAnimationManager>();
     }
 
     public void saveGame()
@@ -56,14 +62,21 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Tạo mới nhân vật");
             //SaveGame();
         }
+        _isAlive = true;
+        _knocked = false;
         _stamina = Stats._stamina;
         _dashTime = Stats._dashingCooldown;
     }
 
-    // cộng thì số dương, giảm thì số âm %
+    // cộng thì số dương, giảm thì số âm %. hãy gọi mỗi lần có thay đổi về speed
     public void setAttackSpeed()
     {
+        Debug.Log("Đang set AttackSpeed");
         //Stats._attackSpeed += number;
+        if (_animManager == null)
+            Debug.LogError("_animManager là null");
+        else 
+            Debug.Log("Đang set AttackSpeed");
         _animManager.setAttackSpeed();
     }
 
@@ -84,7 +97,7 @@ public class PlayerManager : MonoBehaviour
 
             // Mana 
             _maxMana = 100,
-            _currentMana = 100,
+            _currentMana = 0,
 
             // HP
             _maxHealth = 100f,
@@ -95,7 +108,7 @@ public class PlayerManager : MonoBehaviour
 
             // Move speed
             _walkSpeed = 5f,
-            _runSpeed = 15f,
+            _runSpeed = 12f,
 
             // Nhảy
             _jumpForce = 22f,
@@ -131,14 +144,14 @@ public class PlayerManager : MonoBehaviour
             _xeng = 0,
 
             // Hướng dẫn
-            _tutorialRun = false,
-            _tutorialJump = false,
-            _tutorialSit = false,
-            _tutorialAttack = false,
-            _tutorialDash = false,
+            _tutorialRun = true,
+            _tutorialJump = true,
+            _tutorialSit = true,
+            _tutorialAttack = true,
+            _tutorialDash = true,
 
             // Kỹ năng đã mở
-            _doubleJump = false,
+            _doubleJump = true,
             _skillQ = false,
             _skillW = false,
             _skillE = false
@@ -151,8 +164,59 @@ public class PlayerManager : MonoBehaviour
         Stats = createNewStats();
     }
 
+    // set vị trí trước khi chết để có thể quay lại vị trí đó
     public void setRespawnPoint(Vector3 pos)
     {
         _respawnPoint = pos;
+    }
+
+    // tăng mana hiện tại lên, nếu tăng thì add = true
+    public void setMana(float mana, bool add)
+    {
+        if (add && Stats._currentMana < Stats._maxMana)
+        {
+            Stats._currentMana += mana;
+            if (Stats._currentMana > Stats._maxMana)
+                Stats._currentMana = Stats._maxMana;
+        }
+        else if (!add && Stats._currentMana > 0)
+        {
+            Stats._currentMana -= mana;
+            if (Stats._currentMana < 0)
+                Stats._currentMana = 0;
+        }
+    }
+
+    // trừ thể lực mỗi khi dash
+    public bool dash()
+    {
+        if (_stamina >= 40)
+        {
+            _stamina -= 40;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // add = true là bán và nhặt được xèng, add = false là bán đồ
+    public bool setCoin(int value, bool add)
+    {
+        if (add)
+        {
+            Stats._xeng += value;
+            return false;
+        }
+        else
+        {
+            if (Stats._xeng >= value)
+            {
+                Stats._xeng -= value;
+                return true;
+            }
+            return false;
+        }
     }
 }

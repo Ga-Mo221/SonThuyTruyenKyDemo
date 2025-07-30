@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a73b0593c3b74844a5b8c08afcd7cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animManager: {fileID: 0}
+  _player: {fileID: 7180408545748383221, guid: edb88bde8143b7940ad10f5691552ae2, type: 3}
   Stats:
     _level: 0
     _currentExp: 0
@@ -135,9 +135,10 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isHelmet: 0
     _armor:
       _itemID: 
       _instanceID: 
@@ -150,9 +151,10 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isArmor: 0
     _boots:
       _itemID: 
       _instanceID: 
@@ -165,9 +167,10 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isBoots: 0
     _accessory:
       _itemID: 
       _instanceID: 
@@ -180,9 +183,10 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isAccesory: 0
     _MeleeWeapon:
       _itemID: 
       _instanceID: 
@@ -195,9 +199,10 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isMelleWeapon: 0
     _RangedWeapon:
       _itemID: 
       _instanceID: 
@@ -210,9 +215,10 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isRangedWeapon: 0
     _Consumahble:
       _itemID: 
       _instanceID: 
@@ -225,11 +231,26 @@ MonoBehaviour:
       _bonuscritChancePhysical: 0
       _bonusCritChanceMagic: 0
       _bonusArmor: 0
+      _bonusPhysicRes: 0
       _bonusMagicResist: 0
       _bonusCooldownReduction: 0
-      _bonusCooldownTime: 0
+    _isConsumahble: 0
   _inventoryGOJ: {fileID: 0}
+  _inventoryUIWeapon: {fileID: 0}
+  _inventoryUIHelmet: {fileID: 0}
+  _inventoryUIArmor: {fileID: 0}
+  _inventoryUIBoots: {fileID: 0}
+  _inventoryUIAccesory: {fileID: 0}
+  _inventoryUIConsumahble: {fileID: 0}
   _itemPrefab: {fileID: 8436074699862447248, guid: 7fe0eb7c242a6e549913b78f7226477c, type: 3}
+  _EqueiItemUI: {fileID: 0}
+  _HelmetPos: {fileID: 0}
+  _ArmorPos: {fileID: 0}
+  _BootsPos: {fileID: 0}
+  _AccessoryPos: {fileID: 0}
+  _MeleeWeaponPos: {fileID: 0}
+  _RangedWeaponPos: {fileID: 0}
+  _ConsumahblePos: {fileID: 0}
   _equeiItemPrefab: {fileID: 4731921118981230689, guid: 1d3fc4b49a032974890f0899b3ff5a00, type: 3}
 --- !u!114 &1169944777352267781
 MonoBehaviour:

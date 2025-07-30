@@ -10,6 +10,7 @@ public class PlayerStatusUI : MonoBehaviour
     [SerializeField] private Slider _Stamina;
 
     // text
+    [SerializeField] private TextMeshProUGUI _allItemText;
     [SerializeField] private TextMeshProUGUI _xeng;
 
     // life
@@ -25,6 +26,7 @@ public class PlayerStatusUI : MonoBehaviour
     void Start()
     {
         setPlayerStatus();
+        _allItemText.text = "All Items: " + InventoryManager.Instance._allItems.Count;
     }
 
     void Update()
@@ -40,7 +42,7 @@ public class PlayerStatusUI : MonoBehaviour
         _mana.maxValue = PlayerManager.Instance.Stats._maxMana;
         _Stamina.maxValue = PlayerManager.Instance.Stats._stamina;
 
-        //text
+        //xeng
         _xeng.text = PlayerManager.Instance.Stats._xeng.ToString();
 
         // life
@@ -55,6 +57,7 @@ public class PlayerStatusUI : MonoBehaviour
         // lider
         _health.value = PlayerManager.Instance.Stats._currentHealth;
         _Stamina.value = PlayerManager.Instance._stamina;
+        _mana.value = PlayerManager.Instance.Stats._currentMana;
 
         // text
         _xeng.text = PlayerManager.Instance.Stats._xeng.ToString();

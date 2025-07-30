@@ -18,6 +18,7 @@ public class LauncherChecker : MonoBehaviour
             if (arg == "-launch_by_launcher")
             {
                 hasLauncherFlag = true;
+                SceneController.Instance.BackToMenu();
                 break;
             }
         }
