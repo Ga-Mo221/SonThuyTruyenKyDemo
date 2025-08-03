@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
         else _playerInput.setJumping();
 
-        if (_isGround && !_playerInput._isMoving && !_isDashing && !_playerInput._isJumping)
+        if (_isGround && !_playerInput._isMoving && !_isDashing && !_playerInput._isJumping && !PlayerManager.Instance._canMoveAttack)
         {
             _rb.linearVelocity = new Vector2(0, 0);
         }
@@ -107,7 +107,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerInput._isDash && _canDash)
         {
-            StartCoroutine(startDash());
+            if (PlayerManager.Instance.dash())
+                StartCoroutine(startDash());
         }
     }
     private IEnumerator startDash()
@@ -147,6 +148,12 @@ public class PlayerController : MonoBehaviour
     // Jump
     private void handleJump()
     {
+        bool _doubleJump = PlayerManager.Instance.Stats._doubleJump;
+        // if (_doubleJump)
+        //     Debug.Log("Có thể nhảy đôi, jumpCount: " + _jumpCount);
+        // else 
+        //     Debug.LogError("Không thể nhảy đôi");
+
         if ((_playerInput._isJump && _isGround) || (_playerInput._isJump && _jumpCount < 1 && PlayerManager.Instance.Stats._doubleJump))
         {
             StartCoroutine(fixDash());
@@ -155,6 +162,7 @@ public class PlayerController : MonoBehaviour
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0);
 
             if (!_isGround) _jumpCount++;
+            //Debug.Log("Nhảy, jumpCount: " + _jumpCount);
             _animManger.setJumping();
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
         }
@@ -174,6 +182,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerInput._isAttack && _isGround && !_isDashing)
         {
+            //Debug.Log("Đánh Nè");
             _animManger.setAttack();
         }
     }

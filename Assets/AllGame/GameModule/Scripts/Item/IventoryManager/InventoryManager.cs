@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 
 #if UNITY_EDITOR
@@ -22,23 +24,23 @@ public class InventoryManager : MonoBehaviour
 
     private SaveItem _saveItem;
     [SerializeField] private Transform _inventoryGOJ;
-    private Transform _inventoryUIWeapon;
-    private Transform _inventoryUIHelmet;
-    private Transform _inventoryUIArmor;
-    private Transform _inventoryUIBoots;
-    private Transform _inventoryUIAccesory;
-    private Transform _inventoryUIConsumahble;
+    [SerializeField] private Transform _inventoryUIWeapon;
+    [SerializeField] private Transform _inventoryUIHelmet;
+    [SerializeField] private Transform _inventoryUIArmor;
+    [SerializeField] private Transform _inventoryUIBoots;
+    [SerializeField] private Transform _inventoryUIAccesory;
+    [SerializeField] private Transform _inventoryUIConsumahble;
     [SerializeField] private GameObject _itemPrefab;
 
 
-    private Transform _EqueiItemUI;
-    private Transform _HelmetPos;
-    private Transform _ArmorPos;
-    private Transform _BootsPos;
-    private Transform _AccessoryPos;
-    private Transform _MeleeWeaponPos;
-    private Transform _RangedWeaponPos;
-    private Transform _ConsumahblePos;
+    [SerializeField] private Transform _EqueiItemUI;
+    [SerializeField] private Transform _HelmetPos;
+    [SerializeField] private Transform _ArmorPos;
+    [SerializeField] private Transform _BootsPos;
+    [SerializeField] private Transform _AccessoryPos;
+    [SerializeField] private Transform _MeleeWeaponPos;
+    [SerializeField] private Transform _RangedWeaponPos;
+    [SerializeField] private Transform _ConsumahblePos;
     [SerializeField] private GameObject _equeiItemPrefab;
 
     private void Awake()
@@ -59,27 +61,6 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.LogWarning("không tìm thấy SaveItem component");
             return;
-        }
-
-        if (_inventoryGOJ == null)
-            Debug.LogError("không có gameobject Profile. hãy thêm vào GameManager/InventoryManager/inventory GOJ");
-        else
-        {
-            _inventoryUIWeapon = _inventoryGOJ.Find("InventoryMenu/Nen/Menu/Panel/Weapon/Content");
-            _inventoryUIHelmet = _inventoryGOJ.Find("InventoryMenu/Nen/Menu/Panel/Helmet/Content");
-            _inventoryUIArmor = _inventoryGOJ.Find("InventoryMenu/Nen/Menu/Panel/Armor/Content");
-            _inventoryUIBoots = _inventoryGOJ.Find("InventoryMenu/Nen/Menu/Panel/Boots/Content");
-            _inventoryUIAccesory = _inventoryGOJ.Find("InventoryMenu/Nen/Menu/Panel/Accessory/Content");
-            _inventoryUIConsumahble = _inventoryGOJ.Find("InventoryMenu/Nen/Menu/Panel/Consumahble/Viewport/Content");
-
-            _HelmetPos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/HelmetPos");
-            _ArmorPos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/ArmorPos");
-            _BootsPos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/BootsPos");
-            _AccessoryPos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/AccessoryPos");
-            _MeleeWeaponPos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/WeapoolMeleePos");
-            _RangedWeaponPos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/WeapooRangedPos");
-            _ConsumahblePos = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/ConsumahblePos");
-            _EqueiItemUI = _inventoryGOJ.Find("InventoryMenu/Nen/Equie/EquieItemUI");
         }
     }
 
@@ -236,18 +217,18 @@ public class InventoryManager : MonoBehaviour
     public void Equip(RtItem item)
     {
         _equipedItem.equip(item);
-        ApplyItem(item, true);
         DisplayInventory();
         DisplayEquipedIetm();
+        ApplyItem(item, true);
     }
 
 
     public void UnEquip(RtItem item)
     {
         _equipedItem.unEquip(item);
-        ApplyItem(item, false);
         DisplayInventory();
         DisplayEquipedIetm();
+        ApplyItem(item, false);
     }
 
     private void ApplyItem(RtItem item, bool equip)
@@ -337,25 +318,55 @@ public class InventoryManager : MonoBehaviour
 
     private void cleanInventory()
     {
+        if (_inventoryUIWeapon == null)
+        {
+            Debug.LogError("không có gameobject InventoryUIWeapon.");
+            return;
+        }
         foreach (Transform child in _inventoryUIWeapon)
         {
             Destroy(child.gameObject);
+        }
+        if (_inventoryUIHelmet == null)
+        {
+            Debug.LogError("không có gameobject _inventoryUIHelmet.");
+            return;
         }
         foreach (Transform child in _inventoryUIHelmet)
         {
             Destroy(child.gameObject);
         }
+        if (_inventoryUIArmor == null)
+        {
+            Debug.LogError("không có gameobject _inventoryUIArmor.");
+            return;
+        }
         foreach (Transform child in _inventoryUIArmor)
         {
             Destroy(child.gameObject);
+        }
+        if (_inventoryUIBoots == null)
+        {
+            Debug.LogError("không có gameobject _inventoryUIBoots.");
+            return;
         }
         foreach (Transform child in _inventoryUIBoots)
         {
             Destroy(child.gameObject);
         }
+        if (_inventoryUIAccesory == null)
+        {
+            Debug.LogError("không có gameobject _inventoryUIAccesory.");
+            return;
+        }
         foreach (Transform child in _inventoryUIAccesory)
         {
             Destroy(child.gameObject);
+        }
+        if (_inventoryUIConsumahble == null)
+        {
+            Debug.LogError("không có gameobject _inventoryUIConsumahble.");
+            return;
         }
         foreach (Transform child in _inventoryUIConsumahble)
         {

@@ -4,7 +4,14 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private playerRada _rada;
+    [SerializeField] private GameObject _damagePrefab;
+    [SerializeField] private Transform _profile;
+
+
+    [SerializeField] private float _knockedTime = 0.8f; // Thời gian bị knockback
     private Rigidbody2D _rb;
+    private Transform _displayDamageTextPos;
+    private GameObject _GameOver;
 
     private Coroutine _resetKnocked;
 
@@ -13,6 +20,12 @@ public class HealthManager : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        if (_profile == null)
+        {
+            Debug.LogError("Chưa gắn Profile vào Player.component<HealthManager>");
+        }
+        _displayDamageTextPos = _profile.Find("DamageText");
+        _GameOver = _profile.Find("GameOver").gameObject;
     }
 
     public void takeDamage(int _id, float _damage, bool _magic)
@@ -32,13 +45,22 @@ public class HealthManager : MonoBehaviour
                 _flyPower = 1;
                 break;
         }
-        PlayerManager.Instance.Stats.takeDamage(_damage, _magic);
+        float damage = PlayerManager.Instance.Stats.takeDamage(_damage, _magic);
+        damageText(damage, _magic);
         checkIsALive();
         if (_flyPower == 1) return;
         if (_rada._attackColliders.Count != 0 && PlayerManager.Instance._isAlive)
         {
             handleKnockback();
         }
+    }
+
+    private void damageText(float damage, bool magic)
+    {
+        GameObject _Text = Instantiate(_damagePrefab, transform.position, Quaternion.identity, _displayDamageTextPos);
+        var _text = _Text.GetComponent<DamageText>();
+
+        _text.setDamage(damage, magic);
     }
 
 
@@ -67,7 +89,7 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator resetKnocked()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(_knockedTime);
         PlayerManager.Instance._knocked = false;
     }
 
@@ -81,6 +103,11 @@ public class HealthManager : MonoBehaviour
             {
                 StartCoroutine(revive());
             }
+            else
+            {
+                Debug.Log("Player chết");
+                StartCoroutine(restartGame());
+            }
         }
     }
 
@@ -93,5 +120,12 @@ public class HealthManager : MonoBehaviour
         Vector3 _point = PlayerManager.Instance._respawnPoint;
         if (_point != Vector3.zero || _point != null)
             transform.position = _point;
+    }
+
+    private IEnumerator restartGame()
+    {
+        transform.GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        _GameOver.SetActive(true);
     }
 }

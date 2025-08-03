@@ -140,6 +140,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   F: {fileID: 8175065959645046568}
+  _isXeng: 0
+  _xengCount: 0
+  _isItems: 0
+  _allItemPrefab: []
+  _showPrefab: 0
+  _xengPrefab: {fileID: 6160762600700774968, guid: a281d04f91a829645adfc7a770d1d50d, type: 3}
+  _parrent: {fileID: 0}
 --- !u!95 &5933500243945525246
 Animator:
   serializedVersion: 7

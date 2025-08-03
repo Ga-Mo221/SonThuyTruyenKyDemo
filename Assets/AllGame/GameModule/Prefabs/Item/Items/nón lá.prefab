@@ -49,7 +49,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: cd824a4fe305b68447e3c2d77383fb9d8d90c352d7f4ac20f9995728f7c3411dc555d8dc550f58d159c5512e0000000043fcc458115ed931bf22a8ed
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7385480254383577668}
   - component: {fileID: 6885908351263028919}
   - component: {fileID: 5903358534035673473}
+  - component: {fileID: 3112147025778784103}
   m_Layer: 5
   m_Name: "n\xF3n l\xE1"
   m_TagString: Untagged
@@ -161,8 +162,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -307748161
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e0054df9d1d70484c9afc895e0fa4e1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -270,3 +271,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 0911ed78bc1af5a459407cff1c81c677, type: 2}
+--- !u!114 &3112147025778784103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5472743308804497246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04b274bf08a56a478a35a4ec9c03b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flyPower: 7
+  _item: 1
+  _collider: {fileID: 0}
+  _dropTime: 0
+  _moveSpeedToPlayer: 0
+  _coin: 1
+  _XengValue: 0
+  _LinhAnValue: 0

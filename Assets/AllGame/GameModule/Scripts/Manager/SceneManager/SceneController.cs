@@ -16,7 +16,12 @@ public class SceneController : MonoBehaviour
 
         Instance = this;
     }
-    
+
+    public void ReloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void NextSmallLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
@@ -25,5 +30,15 @@ public class SceneController : MonoBehaviour
     public void LastSmallLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void LoadMap1()
+    {
+        SceneManager.LoadSceneAsync("Map1");
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadSceneAsync("Maimenu");
     }
 }

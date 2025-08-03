@@ -5,6 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private Transform _Profile;
     private GameObject _inventoryMenu;
+    private GameObject _Option;
 
     public float _moveInput { get; private set; }
     public bool _isMoving { get; private set; }
@@ -15,6 +16,8 @@ public class PlayerInput : MonoBehaviour
     public bool _isJump { get; private set; }
     public bool _isAttack { get; private set; }
 
+    private bool _openIventory = false;
+
     void Start()
     {
         if (_Profile == null)
@@ -22,6 +25,7 @@ public class PlayerInput : MonoBehaviour
             Debug.LogError("Chưa gắn Profile và prefab Player/PlayerInput");
         }
         _inventoryMenu = _Profile.Find("InventoryMenu").gameObject;
+        _Option = _Profile.Find("Option").gameObject;
     }
 
     private void Update()
@@ -36,7 +40,8 @@ public class PlayerInput : MonoBehaviour
                 handleAttack();
             handleMove();
         }
-        OpenInventory();
+        openInventory();
+        openOption();
     }
 
     // move
@@ -160,7 +165,9 @@ public class PlayerInput : MonoBehaviour
     private IEnumerator resetJump()
     {
         yield return new WaitForEndOfFrame();
+#if UNITY_EDITOR
         yield return new WaitForEndOfFrame();
+#endif
         _isJump = false;
     }
     public void setJumping() => _isJumping = true;
@@ -175,6 +182,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _canAttack)
         {
+            //Debug.Log("ckick Đánh nè");
             _isAttack = true;
             if (_isSiting) _isSiting = !_isSiting;
             StartCoroutine(resetAttack());
@@ -183,34 +191,64 @@ public class PlayerInput : MonoBehaviour
     public IEnumerator resetAttack()
     {
         yield return new WaitForEndOfFrame();
+#if UNITY_EDITOR
         yield return new WaitForEndOfFrame();
+#endif
         _isAttack = false;
     }
     public void resetCanAttact()
     {
+        PlayerManager.Instance._canMoveAttack = false;
         StartCoroutine(_canAttackk());
     }
-    public void setCanAttack() => _canAttack = false;
     private IEnumerator _canAttackk()
     {
         yield return new WaitForSeconds(_canAttackCooldown);
         _canAttack = true;
+        Debug.Log("Có thể đánh lại");
     }
+    public void setCanAttack() => _canAttack = false;
 
 
 
 
     // inventory
-    private void OpenInventory()
+    private void openInventory()
     {
         if (Input.GetKeyDown(KeyCode.Tab) && PlayerManager.Instance._isAlive)
         {
             bool isActive = _inventoryMenu.activeSelf;
             _inventoryMenu.SetActive(!isActive);
+            _openIventory = !isActive;
             if (!isActive)
                 PlayerManager.Instance._knocked = true;
             else
                 PlayerManager.Instance._knocked = false;
+        }
+    }
+
+
+    // Option
+    private void openOption()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            bool isActive = _Option.activeSelf;
+            if (!_openIventory)
+            {
+                _Option.SetActive(!isActive);
+
+                if (!isActive)
+                    PlayerManager.Instance._knocked = true;
+                else
+                    PlayerManager.Instance._knocked = false;
+            }
+            else
+            {
+                _inventoryMenu.SetActive(false);
+                _openIventory = false;
+                PlayerManager.Instance._knocked = false;
+            }
         }
     }
 }
