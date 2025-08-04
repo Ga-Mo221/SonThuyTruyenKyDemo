@@ -1,4 +1,3 @@
-// Bản đã xóa tất cả Debug.Log và hàm debug trong PhongHuyetTrung
 using UnityEngine;
 using System.Collections;
 
@@ -7,263 +6,209 @@ public class PhongHuyetTrung : EnemyBase
     [Header("Explosion Settings")]
     [SerializeField] private float _countdownDuration = 8f;
     [SerializeField] private float _maxMoveSpeedDuringCountdown = 10f;
-    [SerializeField] private float _instantExplodeDistance = 1.2f;
     [SerializeField] private float _speedMultiplierCurve = 2f;
 
-    private bool isCountingDown = false;
-    private bool hasDetectedPlayer = false;
-    private bool hasExploded = false;
-    private bool isLive = true;
+    // Trạng thái chính
+    private enum EnemyState
+    {
+        Patrolling,
+        Chasing,
+        Exploding,
+        Poisoning,
+        Dead
+    }
 
-    private float countdownTimer = 0f;
-
+    private EnemyState currentState = EnemyState.Patrolling;
     private GameObject rememberedPlayer;
-    private Coroutine explodeCoroutine;
-    private SpriteRenderer spriteRenderer;
-    private InstantExplodeTrigger instantExplodeTrigger;
-
+    private float countdownTimer = 0f;
     private float originalMoveSpeed;
     private float originalRunSpeed;
-
-    private bool isClose = false;
-    private bool isStay = false;
-    private bool isPatrol = false;
 
     protected override void Awake()
     {
         base.Awake();
         _canFly = true;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
+        
+        // Lưu tốc độ gốc
         originalMoveSpeed = _enemyMoveSpd;
         originalRunSpeed = _enemyRunSpd;
-
-        SetupInstantExplodeCollider();
-    }
-
-    private void SetupInstantExplodeCollider()
-    {
-        GameObject triggerObj = new GameObject("InstantExplodeTrigger");
-        triggerObj.transform.SetParent(transform);
-        triggerObj.transform.localPosition = Vector3.zero;
-        triggerObj.layer = 0;
-
-        CircleCollider2D collider = triggerObj.AddComponent<CircleCollider2D>();
-        collider.isTrigger = true;
-        collider.radius = _instantExplodeDistance;
-        collider.enabled = true;
-
-        instantExplodeTrigger = triggerObj.AddComponent<InstantExplodeTrigger>();
-        instantExplodeTrigger.Initialize(this);
     }
 
     protected override void Start()
     {
         base.Start();
-        base._patrolStartPos = transform.position;
+        _patrolStartPos = transform.position;
         _physicalRes = 0;
         _magicRes = 0;
-
+        
         if (_animator == null)
             _animator = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
-        if (!isLive || hasExploded) return;
+        if (currentState == EnemyState.Dead || currentState == EnemyState.Poisoning) 
+            return;
 
         base.Update();
-        CheckPlayerDetection();
-        CheckManualInstantExplode();
-        UpdateBehaviorStates();
-        UpdateAnimator();
+        updateStateMachine();
+        updateAnimator();
     }
 
-    private void CheckManualInstantExplode()
+    private void updateStateMachine()
     {
-        if (hasExploded || !isLive || _player == null) return;
-
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-
-        if (distanceToPlayer <= _instantExplodeDistance)
+        switch (currentState)
         {
-            if (!hasExploded)
-            {
-                OnPlayerEnterInstantExplodeZone();
-            }
+            case EnemyState.Patrolling:
+                handlePatrollingState();
+                break;
+                
+            case EnemyState.Chasing:
+                handleChasingState();
+                break;
+                
+            case EnemyState.Exploding:
+                // Không cần xử lý gì, chờ animation event
+                break;
         }
     }
 
-    private void CheckPlayerDetection()
+    private void handlePatrollingState()
     {
-        if (_player != null && !hasDetectedPlayer)
+        // Kiểm tra phát hiện player
+        if (_player != null)
         {
             rememberedPlayer = _player;
-            hasDetectedPlayer = true;
-            StartCountdown();
+            currentState = EnemyState.Chasing;
+            countdownTimer = _countdownDuration;
+            
+            // Reset patrol states
+            _isPatrol = false;
+            _isStay = false;
         }
     }
 
-    private void StartCountdown()
+    private void handleChasingState()
     {
-        if (isCountingDown || hasExploded) return;
-
-        if (explodeCoroutine != null)
+        if (rememberedPlayer == null)
         {
-            StopCoroutine(explodeCoroutine);
+            currentState = EnemyState.Patrolling;
+            resetToPatrol();
+            return;
         }
 
-        explodeCoroutine = StartCoroutine(ExplodeCountdownCoroutine());
-        isCountingDown = true;
+        _player = rememberedPlayer;
+
+        // Cập nhật countdown và tốc độ
+        countdownTimer = Mathf.Max(0f, countdownTimer - Time.deltaTime);
+        updateChaseSpeed();
+
+        // Kiểm tra khoảng cách để nổ
+        float distance = Vector3.Distance(transform.position, rememberedPlayer.transform.position);
+        if (distance <= _enemyAttackRange)
+        {
+            triggerExplosion();
+        }
     }
 
-    private void UpdateBehaviorStates()
+    private void updateChaseSpeed()
     {
-        if (hasDetectedPlayer)
-        {
-            isStay = false;
-            isPatrol = false;
+        // Tốc độ tăng dần theo thời gian
+        float timeProgress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
+        float curvedProgress = Mathf.Pow(timeProgress, _speedMultiplierCurve);
+        float newSpeed = Mathf.Lerp(originalRunSpeed, _maxMoveSpeedDuringCountdown, curvedProgress);
+        _enemyRunSpd = newSpeed;
+    }
 
-            if (rememberedPlayer != null)
-            {
-                _player = rememberedPlayer;
-            }
-        }
-        else
-        {
-            isStay = base._isStay;
-            isPatrol = base._isPatrol;
-        }
+    private void resetToPatrol()
+    {
+        _enemyMoveSpd = originalMoveSpeed;
+        _enemyRunSpd = originalRunSpeed;
+        _isPatrol = true;
+        _isStay = false;
+        rememberedPlayer = null;
+        countdownTimer = 0f;
     }
 
     protected override void moveToPlayer()
     {
-        if (hasExploded) return;
+        if (currentState != EnemyState.Chasing) return;
 
-        if (hasDetectedPlayer && rememberedPlayer != null)
+        if (rememberedPlayer != null)
         {
-            _player = rememberedPlayer;
-            CalculateSpeedBasedOnCountdown();
+            _player = rememberedPlayer; // Đảm bảo base class biết player để chase
             base.moveToPlayer();
-        }
-        else if (!hasDetectedPlayer)
-        {
-            base._enemyRunSpd = originalRunSpeed;
-            base.moveToPlayer();
-        }
-    }
-
-    private void CalculateSpeedBasedOnCountdown()
-    {
-        if (isCountingDown && _countdownDuration > 0f)
-        {
-            float timeProgress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
-            float curvedProgress = Mathf.Pow(timeProgress, _speedMultiplierCurve);
-            float newSpeed = Mathf.Lerp(originalRunSpeed, _maxMoveSpeedDuringCountdown, curvedProgress);
-            base._enemyRunSpd = newSpeed;
-        }
-        else
-        {
-            base._enemyRunSpd = originalRunSpeed;
         }
     }
 
     protected override void Patrol()
     {
-        if (hasExploded) return;
-        base._enemyMoveSpd = originalMoveSpeed;
+        if (currentState != EnemyState.Patrolling) return;
+        
+        _enemyMoveSpd = originalMoveSpeed;
         base.Patrol();
     }
 
-    public void OnPlayerEnterInstantExplodeZone()
+    private void triggerExplosion()
     {
-        if (!isLive || hasExploded)
-        {
-            return;
-        }
+        if (currentState != EnemyState.Chasing) return;
 
-        if (explodeCoroutine != null)
-        {
-            StopCoroutine(explodeCoroutine);
-            explodeCoroutine = null;
-        }
+        
+        currentState = EnemyState.Exploding;
 
-        countdownTimer = 0f;
-        isCountingDown = false;
-
+        // Dừng di chuyển
         if (_rb != null)
-        {
             _rb.linearVelocity = Vector2.zero;
-        }
 
-        base._enemyRunSpd = _maxMoveSpeedDuringCountdown;
-        TriggerExplosion();
+        // Reset animation states
+        _animator.SetBool("isClose", false);
+        _animator.SetBool("isPatrol", false);
+        _animator.SetBool("isStay", false);
+        
+        // Trigger explosion animation
+        _animator.SetTrigger("isExplode");
     }
 
-    private IEnumerator ExplodeCountdownCoroutine()
+    // Animation Event được gọi trong animation Explode để gây damage
+    public void onExplodeDamageEvent()
     {
-        countdownTimer = _countdownDuration;
-        float initialFlashInterval = 0.5f;
-        float finalFlashInterval = 0.1f;
-        bool flashRed = true;
-
-        while (countdownTimer > 0 && !hasExploded && isLive)
-        {
-            float timeProgress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
-            float flashInterval = Mathf.Lerp(initialFlashInterval, finalFlashInterval, timeProgress);
-
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.color = flashRed ? Color.red : Color.white;
-            }
-            flashRed = !flashRed;
-
-            yield return new WaitForSeconds(flashInterval);
-            countdownTimer -= flashInterval;
-
-            if (hasDetectedPlayer)
-            {
-                CalculateSpeedBasedOnCountdown();
-            }
-        }
-
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.white;
-        }
-
-        if (!hasExploded && isLive)
-        {
-            TriggerExplosion();
-        }
-    }
-
-    private void TriggerExplosion()
-    {
-        if (hasExploded) return;
-
-        hasExploded = true;
-        isLive = false;
-
-        if (_rb != null)
-        {
-            _rb.linearVelocity = Vector2.zero;
-        }
+        if (currentState != EnemyState.Exploding) return;
 
         if (rememberedPlayer != null)
         {
             float distance = Vector3.Distance(transform.position, rememberedPlayer.transform.position);
             if (distance <= _enemyAttackRange)
             {
-                isClose = true;
                 Attack();
             }
         }
+    }
 
-        SpawnPoisonArea();
-        explodeCoroutine = null;
-        isCountingDown = false;
-        countdownTimer = 0f;
+    // Animation Event được gọi khi animation Explode kết thúc
+    public void onExplodeAnimationComplete()
+    {
+        if (currentState != EnemyState.Exploding) return;
+        
+        currentState = EnemyState.Poisoning;
+        
+        // Chuyển sang animation Poison
+        _animator.SetTrigger("isPoison");
+        
+        // Kích hoạt poison effect
+        Poison poison = GetComponent<Poison>();
+        if (poison != null)
+        {
+            poison.startPoisonEffect();
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    // Animation Event
+    public void onPoisonAnimationComplete()
+    {
     }
 
     protected override void Attack()
@@ -273,85 +218,45 @@ public class PhongHuyetTrung : EnemyBase
         HealthManager health = rememberedPlayer.GetComponent<HealthManager>();
         if (health != null)
         {
-            health.takeDamage(1, base._enemyPhysicalDamage, false);
+            health.takeDamage(0, _enemyPhysicalDamage, false);
+            Debug.Log($"Explosion dealt {_enemyPhysicalDamage} physical damage");
         }
     }
 
     public override void Die()
     {
-        if (hasExploded) return;
-
-        hasExploded = true;
-        isLive = false;
-
-        if (explodeCoroutine != null)
+        
+        currentState = EnemyState.Dead;
+        this.enabled = false;
+        
+        if (_rb != null)
         {
-            StopCoroutine(explodeCoroutine);
-            explodeCoroutine = null;
+            _rb.linearVelocity = Vector2.zero;
+            _rb.simulated = false;
         }
-
-        isCountingDown = false;
-        countdownTimer = 0f;
-
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.white;
-        }
-
-        base.Die();
+        
+        Destroy(gameObject);
     }
 
-    private void SpawnPoisonArea()
+    private void updateAnimator()
     {
-        _animator.SetBool("isClose", false);
-        _animator.SetBool("isPatrol", false);
-        _animator.SetTrigger("isExplode");
+        if (_animator == null || currentState == EnemyState.Exploding || currentState == EnemyState.Poisoning) 
+            return;
 
-        Poison poison = GetComponent<Poison>();
-        if (poison != null)
-        {
-            poison.ActivatePoison();
-        }
-    }
-
-    private void UpdateAnimator()
-    {
-        if (_animator == null) return;
+        bool isClose = (currentState == EnemyState.Chasing);
+        bool isPatrol = (currentState == EnemyState.Patrolling && _isPatrol);
+        bool isStay = (currentState == EnemyState.Patrolling && _isStay);
 
         _animator.SetBool("isClose", isClose);
         _animator.SetBool("isPatrol", isPatrol);
         _animator.SetBool("isStay", isStay);
     }
+
+    public override void takeDamage()
+    {
+        if (currentState == EnemyState.Patrolling || currentState == EnemyState.Chasing)
+        {
+            base.takeDamage();
+        }
+    }
 }
-
-public class InstantExplodeTrigger : MonoBehaviour
-{
-    private PhongHuyetTrung parentEnemy;
-    private bool hasTriggered = false;
-    private CircleCollider2D triggerCollider;
-
-    public void Initialize(PhongHuyetTrung enemy)
-    {
-        parentEnemy = enemy;
-        triggerCollider = GetComponent<CircleCollider2D>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (parentEnemy == null || hasTriggered) return;
-            hasTriggered = true;
-            parentEnemy.OnPlayerEnterInstantExplodeZone();
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && parentEnemy != null && !hasTriggered)
-        {
-            hasTriggered = true;
-            parentEnemy.OnPlayerEnterInstantExplodeZone();
-        }
-    }
-} 

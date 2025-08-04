@@ -198,16 +198,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 587854372602709399, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
-      propertyPath: _enemyPhysicalDamage
-      value: 10
+      propertyPath: _patrolRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 587854372602709399, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: _detectionRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 587854372602709399, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: _enemyAttackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 904303956484205044, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 904303956484205044, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_Size.x
+      value: 24.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 904303956484205044, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_Size.y
+      value: 17.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 904303956484205044, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4519742850347100566, guid: 3ce16b9b16978f9459665643159ab898, type: 3}
+    - target: {fileID: 904303956484205044, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1974137954967994635, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7204916
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 1974137954967994635, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.551807
+      value: 5.84
       objectReference: {fileID: 0}
     - target: {fileID: 1974137954967994635, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
       propertyPath: m_LocalPosition.z
@@ -241,17 +269,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2710257366032103589, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296564046612153867, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7335168541057961161, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
       propertyPath: m_Name
       value: HuyetPhongTrung
       objectReference: {fileID: 0}
-    - target: {fileID: 7335168541057961161, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7595223693547818053, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
+      propertyPath: _poisonDamage
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7595223693547818053, guid: 3063aba09f088594eb9eabf558a84913, type: 3}
-      propertyPath: _poisonDamage
-      value: 0.5
+      propertyPath: _poisonDuration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1629,7 +1665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1675410047723484602, guid: 35d2d4177dfec3c4bac989b525e13912, type: 3}
       propertyPath: _detectionRange
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1675410047723484602, guid: 35d2d4177dfec3c4bac989b525e13912, type: 3}
       propertyPath: _nextWaypointDistance
@@ -1694,6 +1730,14 @@ PrefabInstance:
     - target: {fileID: 2415099372113175537, guid: 35d2d4177dfec3c4bac989b525e13912, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
       value: 0.8917663
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500035273041818874, guid: 35d2d4177dfec3c4bac989b525e13912, type: 3}
+      propertyPath: m_Size.y
+      value: 3.4687576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500035273041818874, guid: 35d2d4177dfec3c4bac989b525e13912, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.023174763
       objectReference: {fileID: 0}
     - target: {fileID: 5313374552042058602, guid: 35d2d4177dfec3c4bac989b525e13912, type: 3}
       propertyPath: m_LocalPosition.x

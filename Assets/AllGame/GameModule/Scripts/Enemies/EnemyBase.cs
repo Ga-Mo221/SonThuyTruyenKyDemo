@@ -230,8 +230,6 @@ public abstract class EnemyBase : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x = flipRight ? 1 : -1;
             transform.localScale = scale;
-
-            transform.position = GetComponent<Collider2D>().bounds.center;
         }
     }
 
@@ -342,8 +340,6 @@ public abstract class EnemyBase : MonoBehaviour
                     _rb.linearVelocity = new Vector2(direction.x * (_enemyRunSpd * 0.75f), _rb.linearVelocity.y);
                     _isMoving = true;
                     flipToFacePlayer();
-                    Debug.Log($"BackupCheck - vel: {_rb.linearVelocity.x}, stuckTimer: {_stuckTimer}");
-
                 }
             }
         }
