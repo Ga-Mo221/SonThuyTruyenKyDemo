@@ -1,298 +1,262 @@
 using UnityEngine;
-
-// xử lí lại flip enemy khi phát hiện người chơi
-// xử lí nổ (đếm ngược) sau khi người chơi rời khỏi vùng phát hiện
+using System.Collections;
 
 public class PhongHuyetTrung : EnemyBase
 {
-    private Coroutine explodeCoroutine;
-    private bool isCountingDown = false;
-    private bool hasDetectedPlayer = false;
-
+    [Header("Explosion Settings")]
     [SerializeField] private float _countdownDuration = 8f;
-    [SerializeField] private float _maxMoveSpeedDuringCountdown = 10f; // Tăng tốc độ tối đa
-    [SerializeField] private float _instantExplodeDistance = 1.2f;
-    [SerializeField] private float _speedMultiplierCurve = 2f; // Độ cong của đường tăng tốc
-    private float countdownTimer = 0f;
+    [SerializeField] private float _maxMoveSpeedDuringCountdown = 10f;
+    [SerializeField] private float _speedMultiplierCurve = 2f;
 
+    // Trạng thái chính
+    private enum EnemyState
+    {
+        Patrolling,
+        Chasing,
+        Exploding,
+        Poisoning,
+        Dead
+    }
+
+    private EnemyState currentState = EnemyState.Patrolling;
+    private GameObject rememberedPlayer;
+    private float countdownTimer = 0f;
     private float originalMoveSpeed;
     private float originalRunSpeed;
-    // Lưu reference đến player để không bị mất
-    private GameObject rememberedPlayer;
-
-    // Animator-related state
-    private bool isClose = false;
-    private bool isStay = false;
-    private bool isPatrol = false;
-    private bool isLive = true;
-
-    private SpriteRenderer spriteRenderer;
-    private CircleCollider2D instantExplodeCollider;
 
     protected override void Awake()
     {
         base.Awake();
         _canFly = true;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalMoveSpeed = _enemyMoveSpd; // Lưu tốc độ gốc
+        
+        // Lưu tốc độ gốc
+        originalMoveSpeed = _enemyMoveSpd;
         originalRunSpeed = _enemyRunSpd;
-        SetupInstantExplodeCollider();
-    }
-
-    private void SetupInstantExplodeCollider()
-    {
-        GameObject triggerObj = new GameObject("InstantExplodeTrigger");
-        triggerObj.transform.SetParent(transform);
-        triggerObj.transform.localPosition = Vector3.zero;
-
-        CircleCollider2D collider = triggerObj.AddComponent<CircleCollider2D>();
-        collider.isTrigger = true;
-        collider.radius = _instantExplodeDistance;
-
-        instantExplodeCollider = collider;
-
-        InstantExplodeTrigger triggerScript = triggerObj.AddComponent<InstantExplodeTrigger>();
-        triggerScript.Initialize(this);
     }
 
     protected override void Start()
     {
         base.Start();
-        base._patrolStartPos = transform.position;
+        _patrolStartPos = transform.position;
         _physicalRes = 0;
         _magicRes = 0;
-        _animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        if (_animator == null)
+            _animator = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
+        if (currentState == EnemyState.Dead || currentState == EnemyState.Poisoning) 
+            return;
+
         base.Update();
+        updateStateMachine();
+        updateAnimator();
+    }
 
-        if (!isLive) return;
+    private void updateStateMachine()
+    {
+        switch (currentState)
+        {
+            case EnemyState.Patrolling:
+                handlePatrollingState();
+                break;
+                
+            case EnemyState.Chasing:
+                handleChasingState();
+                break;
+                
+            case EnemyState.Exploding:
+                // Không cần xử lý gì, chờ animation event
+                break;
+        }
+    }
 
-        // Lưu lại player reference khi phát hiện lần đầu
-        if (_player != null && !hasDetectedPlayer)
+    private void handlePatrollingState()
+    {
+        // Kiểm tra phát hiện player
+        if (_player != null)
         {
             rememberedPlayer = _player;
+            currentState = EnemyState.Chasing;
+            countdownTimer = _countdownDuration;
+            
+            // Reset patrol states
+            _isPatrol = false;
+            _isStay = false;
         }
+    }
 
-        CheckPlayerDetection();
-
-        // Sau khi đã phát hiện player, luôn ở trạng thái đuổi theo
-        if (hasDetectedPlayer)
+    private void handleChasingState()
+    {
+        if (rememberedPlayer == null)
         {
-            isStay = false;
-            isPatrol = false;
-
-            // Override _player bằng rememberedPlayer để không bị mất
-            if (rememberedPlayer != null)
-            {
-                _player = rememberedPlayer;
-            }
+            currentState = EnemyState.Patrolling;
+            resetToPatrol();
+            return;
         }
-        else
+
+        _player = rememberedPlayer;
+
+        // Cập nhật countdown và tốc độ
+        countdownTimer = Mathf.Max(0f, countdownTimer - Time.deltaTime);
+        updateChaseSpeed();
+
+        // Kiểm tra khoảng cách để nổ
+        float distance = Vector3.Distance(transform.position, rememberedPlayer.transform.position);
+        if (distance <= _enemyAttackRange)
         {
-            // Chỉ patrol khi chưa phát hiện player
-            isStay = base._isStay;
-            isPatrol = base._isPatrol;
+            triggerExplosion();
         }
+    }
 
-        UpdateAnimator();
+    private void updateChaseSpeed()
+    {
+        // Tốc độ tăng dần theo thời gian
+        float timeProgress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
+        float curvedProgress = Mathf.Pow(timeProgress, _speedMultiplierCurve);
+        float newSpeed = Mathf.Lerp(originalRunSpeed, _maxMoveSpeedDuringCountdown, curvedProgress);
+        _enemyRunSpd = newSpeed;
+    }
+
+    private void resetToPatrol()
+    {
+        _enemyMoveSpd = originalMoveSpeed;
+        _enemyRunSpd = originalRunSpeed;
+        _isPatrol = true;
+        _isStay = false;
+        rememberedPlayer = null;
+        countdownTimer = 0f;
     }
 
     protected override void moveToPlayer()
     {
-        // Sau khi đã phát hiện player, luôn cố gắng di chuyển đến player (dù player có ra khỏi tầm hay không)
-        if (hasDetectedPlayer && rememberedPlayer != null)
+        if (currentState != EnemyState.Chasing) return;
+
+        if (rememberedPlayer != null)
         {
-            _player = rememberedPlayer;
-
-            // Tính toán tốc độ dựa trên countdown
-            CalculateSpeedBasedOnCountdown();
-
+            _player = rememberedPlayer; // Đảm bảo base class biết player để chase
             base.moveToPlayer();
-        }
-        else if (!hasDetectedPlayer)
-        {
-            base._enemyRunSpd = originalRunSpeed;
-            base.moveToPlayer();
-        }
-    }
-
-    private void CalculateSpeedBasedOnCountdown()
-    {
-        if (isCountingDown && _countdownDuration > 0f)
-        {
-            // Tính toán progress: 0 = mới bắt đầu, 1 = sắp nổ
-            float timeProgress = Mathf.Clamp01(1f - (countdownTimer / _countdownDuration));
-
-            // Sử dụng curve để tạo hiệu ứng tăng tốc mượt mà hơn
-            // Pow càng cao thì tăng tốc càng chậm ở đầu, nhanh ở cuối
-            float curvedProgress = Mathf.Pow(timeProgress, _speedMultiplierCurve);
-
-            // Tính tốc độ mới
-            float newSpeed = Mathf.Lerp(originalMoveSpeed, _maxMoveSpeedDuringCountdown, curvedProgress);
-            base._enemyRunSpd = newSpeed;
-        }
-        else
-        {
-            base._enemyRunSpd = originalRunSpeed;
         }
     }
 
     protected override void Patrol()
     {
-        base._enemyMoveSpd = originalMoveSpeed;
+        if (currentState != EnemyState.Patrolling) return;
+        
+        _enemyMoveSpd = originalMoveSpeed;
         base.Patrol();
     }
 
-    private void CheckPlayerDetection()
+    private void triggerExplosion()
     {
-        bool playerInRange = _player != null &&
-                           Vector3.Distance(transform.position, _player.transform.position) <= _detectionRange;
+        if (currentState != EnemyState.Chasing) return;
 
-        // Nếu player vào tầm phát hiện lần đầu
-        if (playerInRange && !hasDetectedPlayer)
-        {
-            hasDetectedPlayer = true;
-            rememberedPlayer = _player; // Lưu lại player reference
-            explodeCoroutine = StartCoroutine(ExplodeAfterDelay(_countdownDuration));
-            isCountingDown = true;
-        }
+        
+        currentState = EnemyState.Exploding;
 
+        // Dừng di chuyển
+        if (_rb != null)
+            _rb.linearVelocity = Vector2.zero;
+
+        // Reset animation states
+        _animator.SetBool("isClose", false);
+        _animator.SetBool("isPatrol", false);
+        _animator.SetBool("isStay", false);
+        
+        // Trigger explosion animation
+        _animator.SetTrigger("isExplode");
     }
 
-    public void OnPlayerEnterInstantExplodeZone()
+    // Animation Event được gọi trong animation Explode để gây damage
+    public void onExplodeDamageEvent()
     {
-        if (!isLive) return;
+        if (currentState != EnemyState.Exploding) return;
 
-        if (explodeCoroutine != null)
-        {
-            StopCoroutine(explodeCoroutine);
-            explodeCoroutine = null;
-        }
-
-        countdownTimer = 0f;
-        isCountingDown = false;
-
-        // Set tốc độ về tối đa khi sắp nổ ngay
-        base._enemyRunSpd = _maxMoveSpeedDuringCountdown;
-
-        TriggerExplosion();
-    }
-
-    private System.Collections.IEnumerator ExplodeAfterDelay(float delay)
-    {
-        countdownTimer = delay;
-        float flashInterval = 0.2f;
-        bool flashRed = true;
-
-        // Tính toán khoảng thời gian flash ngắn dần (tạo cảm giác gấp gáp)
-        float initialFlashInterval = 0.5f;
-        float finalFlashInterval = 0.1f;
-
-        while (countdownTimer > 0)
-        {
-            // Tính progress để điều chỉnh flash speed
-            float timeProgress = Mathf.Clamp01(1f - (countdownTimer / delay));
-
-            // Flash nhanh dần khi gần nổ
-            flashInterval = Mathf.Lerp(initialFlashInterval, finalFlashInterval, timeProgress);
-
-            if (spriteRenderer != null)
-                spriteRenderer.color = flashRed ? Color.red : Color.white;
-
-            flashRed = !flashRed;
-
-            yield return new WaitForSeconds(flashInterval);
-            countdownTimer -= flashInterval;
-
-            // Cập nhật tốc độ liên tục trong countdown
-            if (hasDetectedPlayer)
-            {
-                CalculateSpeedBasedOnCountdown();
-            }
-        }
-
-        if (spriteRenderer != null)
-            spriteRenderer.color = Color.white;
-
-        // Luôn nổ sau khi hết thời gian countdown
-        TriggerExplosion();
-    }
-
-    private void TriggerExplosion()
-    {
         if (rememberedPlayer != null)
         {
             float distance = Vector3.Distance(transform.position, rememberedPlayer.transform.position);
             if (distance <= _enemyAttackRange)
             {
-                isClose = true;
                 Attack();
             }
-            SpawnPoisonArea();
         }
-
-        explodeCoroutine = null;
-        isCountingDown = false;
-        hasDetectedPlayer = false;
     }
 
-    private void UpdateAnimator()
+    // Animation Event được gọi khi animation Explode kết thúc
+    public void onExplodeAnimationComplete()
     {
-        if (_animator == null) return;
+        if (currentState != EnemyState.Exploding) return;
+        
+        currentState = EnemyState.Poisoning;
+        
+        // Chuyển sang animation Poison
+        _animator.SetTrigger("isPoison");
+        
+        // Kích hoạt poison effect
+        Poison poison = GetComponent<Poison>();
+        if (poison != null)
+        {
+            poison.startPoisonEffect();
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    // Animation Event
+    public void onPoisonAnimationComplete()
+    {
+    }
+
+    protected override void Attack()
+    {
+        if (rememberedPlayer == null) return;
+
+        HealthManager health = rememberedPlayer.GetComponent<HealthManager>();
+        if (health != null)
+        {
+            health.takeDamage(0, _enemyPhysicalDamage, false);
+            Debug.Log($"Explosion dealt {_enemyPhysicalDamage} physical damage");
+        }
+    }
+
+    public override void Die()
+    {
+        
+        currentState = EnemyState.Dead;
+        this.enabled = false;
+        
+        if (_rb != null)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _rb.simulated = false;
+        }
+        
+        Destroy(gameObject);
+    }
+
+    private void updateAnimator()
+    {
+        if (_animator == null || currentState == EnemyState.Exploding || currentState == EnemyState.Poisoning) 
+            return;
+
+        bool isClose = (currentState == EnemyState.Chasing);
+        bool isPatrol = (currentState == EnemyState.Patrolling && _isPatrol);
+        bool isStay = (currentState == EnemyState.Patrolling && _isStay);
 
         _animator.SetBool("isClose", isClose);
         _animator.SetBool("isPatrol", isPatrol);
         _animator.SetBool("isStay", isStay);
     }
 
-    private void SpawnPoisonArea()
+    public override void takeDamage()
     {
-        isLive = false;
-        _animator.SetBool("isClose", !isClose);
-        _animator.SetBool("isPatrol", !isPatrol);
-        _animator.SetTrigger("isExplode");
-        Poison poison = GetComponent<Poison>();
-        if (poison != null)
+        if (currentState == EnemyState.Patrolling || currentState == EnemyState.Chasing)
         {
-            poison.ActivatePoison();
-        }
-        else
-        {
-            Debug.LogError("Poison component NOT FOUND!");
-        }
-    }
-
-    protected override void Attack()
-    {
-        HealthManager health = rememberedPlayer.GetComponent<HealthManager>();
-        if (health != null)
-        {
-            health.takeDamage(1, base._enemyPhysicalDamage, false);
-            Debug.Log($"PhongHuyetTrung attacks player with {_enemyPhysicalDamage} physical damage.");
-        }
-    }
-
-}
-
-// Script riêng để handle instant explode trigger
-public class InstantExplodeTrigger : MonoBehaviour
-{
-    private PhongHuyetTrung parentEnemy;
-    
-    public void Initialize(PhongHuyetTrung enemy)
-    {
-        parentEnemy = enemy;
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && parentEnemy != null)
-        {
-            parentEnemy.OnPlayerEnterInstantExplodeZone();
+            base.takeDamage();
         }
     }
 }

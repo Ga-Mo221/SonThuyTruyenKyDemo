@@ -167,12 +167,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 802a2898464d3094483c7c9562a60441, type: 3}
+  m_Sprite: {fileID: -4519742850347100566, guid: 3ce16b9b16978f9459665643159ab898, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.66, y: 2.275}
+  m_Size: {x: 24.96, y: 17.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -217,10 +217,10 @@ MonoBehaviour:
   _enemyHP: 10
   _enemyPhysicalDamage: 10
   _enemyMagicDamage: 0
-  _enemyAttackRange: 1
+  _enemyAttackRange: 2
   _enemyAttackCooldown: 0
-  _detectionRange: 5
-  _patrolRange: 3
+  _detectionRange: 8
+  _patrolRange: 6
   _physicalRes: 0
   _magicRes: 0
   _enemyRadaGOB: {fileID: 33356983048138436}
@@ -234,7 +234,6 @@ MonoBehaviour:
   _knockbackDuration: 2
   _countdownDuration: 8
   _maxMoveSpeedDuringCountdown: 8
-  _instantExplodeDistance: 1.2
   _speedMultiplierCurve: 4
 --- !u!114 &3119431110537067466
 MonoBehaviour:
@@ -326,7 +325,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1
+  m_Radius: 2
 --- !u!114 &3536891855499398103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,11 +351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800ee129af1e4e342add220b79f6f38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poisonDuration: 2
-  _poisonDamage: 5
-  _poisonedTime: 3
+  _poisonDuration: 5
+  _poisonDamage: 1
+  _poisonTickInterval: 1
   _triggerCollider: {fileID: 6296564046612153867}
-  _explodeAnimator: {fileID: 615365381603773454}
 --- !u!1 &7977358003266637402
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,4 +422,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2
+  m_Radius: 3

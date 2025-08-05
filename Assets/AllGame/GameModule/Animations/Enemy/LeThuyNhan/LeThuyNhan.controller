@@ -608,10 +608,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b82bbcf2764e40913add5902cb0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movePowerX: 6
-  _movePowerY: 0
+  _transition: 0
   _moveX: 1
+  _movePowerX: 7
   _moveY: 0
+  _movePowerY: 0
 --- !u!1101 &9052806257317007666
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

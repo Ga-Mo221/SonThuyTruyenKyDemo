@@ -21,7 +21,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected bool _canFly = false;
 
     [Header("Pathfinding")]
-    [SerializeField] protected float _nextWaypointDistance = 1.2f;
+    [SerializeField] protected float _nextWaypointDistance = 2f;
     protected Path _path;
     protected int _currentWaypoint = 0;
     protected bool _reachedEndOfPath = false;
@@ -41,9 +41,15 @@ public abstract class EnemyBase : MonoBehaviour
     protected bool _isKnockedBack = false;
     protected bool _movingToRight = true;
 
+    // Stuck check
+    protected float _stuckTimer = 0f;
+    protected const float _stuckThreshold = 0.3f;
+
     [SerializeField] protected float _patrolWaitDuration = 2f;
     [SerializeField] protected float _knockbackForce = 300f;
     [SerializeField] protected float _knockbackDuration = 0.2f;
+    protected Coroutine _knockbackRoutine;
+
 
     protected virtual void Awake()
     {
@@ -80,11 +86,14 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (_player != null) handleChaseMode();
         else handlePatrolMode();
+        if (_player != null && !_isKnockedBack)
+        HandleBackupMovementBase();
     }
 
     private void detectPlayer()
     {
-        _player = _enemyRada._player;
+        //_player = _enemyRada._player;
+        _player = (_enemyRada != null && _enemyRada._player != null) ? _enemyRada._player : null;
     }
 
     // Hàm xử lí truy đuổi
@@ -93,6 +102,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (!_isChasing)
         {
             _isChasing = true;
+            Debug.Log("[EnemyBase] Switch to CHASE");
             _path = null;
             _currentWaypoint = 0;
         }
@@ -105,6 +115,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (_isChasing)
         {
             _isChasing = false;
+            Debug.Log("[EnemyBase] Switch to PATROL");
             _path = null;
             _currentWaypoint = 0;
         }
@@ -141,8 +152,26 @@ public abstract class EnemyBase : MonoBehaviour
         float dist = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
         if (dist < _nextWaypointDistance) _currentWaypoint++;
 
-        Flip();
+        flipToFacePlayer();
     }
+
+    protected void flipToFacePlayer()
+    {
+        if (_player == null) return;
+        float dir = _player.transform.position.x - transform.position.x;
+
+        if (Mathf.Abs(dir) < 0.2f) return;
+
+        Vector3 scale = transform.localScale;
+        float newScaleX = dir > 0 ? 1 : -1;
+
+        if (Mathf.Abs(scale.x - newScaleX) > 0.1f)
+        {
+            scale.x = newScaleX;
+            transform.localScale = scale;
+        }
+    }
+
 
     //Hàm tuần tra
     protected virtual void Patrol()
@@ -204,8 +233,6 @@ public abstract class EnemyBase : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x = flipRight ? 1 : -1;
             transform.localScale = scale;
-
-            transform.position = GetComponent<Collider2D>().bounds.center;
         }
     }
 
@@ -237,21 +264,26 @@ public abstract class EnemyBase : MonoBehaviour
     protected void knockbackFromPlayer()
     {
         if (_player == null || _rb == null || _isKnockedBack) return;
+
         Vector2 dir = ((Vector2)transform.position - (Vector2)_player.transform.position).normalized;
-        _rb.AddForce(dir * _knockbackForce);
-        _isKnockedBack = true;
-        StartCoroutine(knockbackCoroutine());
+        _rb.linearVelocity = Vector2.zero;
+        _rb.AddForce(dir * _knockbackForce, ForceMode2D.Impulse);
+
+        if (_knockbackRoutine != null)
+            StopCoroutine(_knockbackRoutine);
+        _knockbackRoutine = StartCoroutine(knockbackCoroutine());
     }
-    
+
+
     // Hàm xử lí thời gian bị đẩy lùi
     protected IEnumerator knockbackCoroutine()
     {
-        enabled = false;
+        _isKnockedBack = true;
         yield return new WaitForSeconds(_knockbackDuration);
         _rb.linearVelocity = Vector2.zero;
         _isKnockedBack = false;
-        enabled = true;
     }
+
 
     // Hàm xử lí Anim Die của enemy
     public virtual void Die()
@@ -270,7 +302,7 @@ public abstract class EnemyBase : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Destroy(gameObject);
     }
-    
+
     // Hàm Debug
     public void OnDrawGizmosSelected()
     {
@@ -289,4 +321,37 @@ public abstract class EnemyBase : MonoBehaviour
 
         if (_enemyHP <= 0) Die();
     }
+    
+    protected void HandleBackupMovementBase()
+    {
+        if (_player == null || _isKnockedBack || ShouldStopMovement()) {
+            _stuckTimer = 0f;
+            return;
+        }
+
+        if (!_isMoving)
+        {
+            _stuckTimer += Time.fixedDeltaTime;
+
+            if (_stuckTimer >= _stuckThreshold && _player != null)
+            {
+                float distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
+
+                if (distanceToPlayer <= _detectionRange && distanceToPlayer > _enemyAttackRange * 1.2f)
+                {
+                    Vector2 direction = (_player.transform.position - transform.position).normalized;
+                    _rb.linearVelocity = new Vector2(direction.x * (_enemyRunSpd * 0.75f), _rb.linearVelocity.y);
+                    _isMoving = true;
+                    flipToFacePlayer();
+                }
+            }
+        }
+        else
+        {
+            _stuckTimer = 0f;
+        }
+    }
+
+    // Cho phép subclass định nghĩa logic dừng movement
+    protected virtual bool ShouldStopMovement() => false;
 }

@@ -4,195 +4,156 @@ using UnityEngine;
 
 public class Poison : MonoBehaviour
 {
+    [Header("Poison Settings")]
     [SerializeField] private float _poisonDuration = 2f;
     [SerializeField] private float _poisonDamage = 1f;
-    [SerializeField] private float _poisonedTime = 3f;
+    [SerializeField] private float _poisonTickInterval = 1f; // Damage mỗi giây
     [SerializeField] private CircleCollider2D _triggerCollider;
-    [SerializeField] private Animator _explodeAnimator;
 
     private bool _isActive = false;
-    private HashSet<GameObject> _playersInPoison = new HashSet<GameObject>();
-
-    private void Update()
-    {
-        // Debug log chỉ chạy một lần khi active
-        if (_isActive)
-        {
-            
-            // Tìm player trong scene
-            GameObject player = GameObject.Find("Player");
-            if (player != null)
-            {
-                float distance = Vector3.Distance(transform.position, player.transform.position);
-                
-                // Kiểm tra xem player có trong vùng trigger không
-                if (_triggerCollider != null && distance <= _triggerCollider.radius)
-                {
-                    
-                    // Force check collision if player is in range but not detected
-                    if (!_playersInPoison.Contains(player))
-                    {
-                        _playersInPoison.Add(player);
-                        
-                        HealthManager health = player.GetComponent<HealthManager>();
-                        if (health != null && player.GetComponent<PoisonedMarker>() == null)
-                        {
-                            StartCoroutine(ApplyPoison(health, player));
-                        }
-                    }
-                }
-            }
-        }
-    }
+    private List<GameObject> _playersInArea = new List<GameObject>();
 
     private void Awake()
     {
+        // Đảm bảo collider tắt ban đầu
         if (_triggerCollider != null)
-            _triggerCollider.enabled = false; // Tắt va chạm ban đầu
+            _triggerCollider.enabled = false;
     }
 
-    public void ActivatePoison() // Gọi từ Animation Event
+    public void startPoisonEffect()
     {
-        StartCoroutine(EnablePoison());
+        Debug.Log("Starting poison effect");
+        StartCoroutine(poisonEffectCoroutine());
     }
 
-    private IEnumerator EnablePoison()
+    private IEnumerator poisonEffectCoroutine()
     {
-        
-        if (_explodeAnimator != null)
-        {
-            _explodeAnimator.SetTrigger("isExplode");
-        }
-
+        // Khóa vị trí enemy
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll; // Khóa vị trí + xoay
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+        yield return new WaitForSeconds(0.2f);
 
-        yield return new WaitForSeconds(0.3f); // Đợi animation bắt đầu
-
+        // Kích hoạt collider và bắt đầu poison effect
         if (_triggerCollider != null)
         {
             _triggerCollider.enabled = true;
         }
-        else
-        {
-        }
-
-        yield return new WaitForFixedUpdate();
 
         _isActive = true;
 
-        yield return new WaitForSeconds(0.1f);
-        CheckPlayersInArea();
+        // Kiểm tra player có sẵn trong vùng không
+        checkInitialPlayersInArea();
 
-        yield return new WaitForSeconds(_poisonDuration - 0.1f);
-
-        if (_triggerCollider != null)
+        float elapsed = 0f;
+        while (elapsed < _poisonDuration)
         {
-            _triggerCollider.enabled = false;
+            // Apply damage cho tất cả player trong vùng
+            applyPoisonDamageToPlayersInArea();
+            
+            yield return new WaitForSeconds(_poisonTickInterval);
+            elapsed += _poisonTickInterval;
         }
 
+        // Tắt poison effect
         _isActive = false;
+        if (_triggerCollider != null)
+            _triggerCollider.enabled = false;
 
-        Destroy(gameObject);
+        // Dọn dẹp và destroy
+        cleanupAndDestroy();
     }
 
-    private void CheckPlayersInArea()
+    private void checkInitialPlayersInArea()
     {
-        
-        if (_triggerCollider == null || !_triggerCollider.enabled)
-        {
-            return;
-        }
+        if (_triggerCollider == null) return;
 
-        // Tìm tất cả collider trong vùng
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _triggerCollider.radius);
+        // Tìm tất cả collider trong vùng poison
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(
+            transform.position, 
+            _triggerCollider.radius
+        );
 
         foreach (Collider2D col in colliders)
         {
-            GameObject player = GetPlayerObject(col);
-            if (player != null && !_playersInPoison.Contains(player))
+            GameObject player = getPlayerFromCollider(col);
+            if (player != null && !_playersInArea.Contains(player))
             {
-                _playersInPoison.Add(player);
-                
-                HealthManager health = player.GetComponent<HealthManager>();
-                if (health != null && player.GetComponent<PoisonedMarker>() == null)
-                {
-                    StartCoroutine(ApplyPoison(health, player));
-                }
+                _playersInArea.Add(player);
             }
+        }
+    }
+
+    private void applyPoisonDamageToPlayersInArea()
+    {
+        if (!_isActive) return;
+
+        // Tạo copy của list để tránh modification during iteration
+        List<GameObject> playersToRemove = new List<GameObject>();
+
+        foreach (GameObject player in _playersInArea)
+        {
+            if (player == null)
+            {
+                playersToRemove.Add(player);
+                continue;
+            }
+
+            HealthManager health = player.GetComponent<HealthManager>();
+            if (health != null)
+            {
+                health.takeDamage(0, _poisonDamage, true); // Magic damage = true cho poison
+                Debug.Log($"Applied {_poisonDamage} poison damage to {player.name}");
+            }
+            else
+            {
+                playersToRemove.Add(player);
+            }
+        }
+
+        // Loại bỏ player không hợp lệ
+        foreach (GameObject player in playersToRemove)
+        {
+            _playersInArea.Remove(player);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        // Bỏ qua các object không phải Player
-        if (collision.name.Contains("Rada") || collision.name.Contains("Enemy"))
-        {
-            return;
-        }
+        if (!_isActive) return;
 
-        GameObject player = GetPlayerObject(collision);
-        if (player != null && !_playersInPoison.Contains(player))
+        GameObject player = getPlayerFromCollider(collision);
+        if (player != null && !_playersInArea.Contains(player))
         {
-            _playersInPoison.Add(player);
-            
-            // Apply poison immediately if active, or wait if not active yet
-            if (_isActive)
-            {
-                HealthManager health = player.GetComponent<HealthManager>();
-                if (health != null && player.GetComponent<PoisonedMarker>() == null)
-                {
-                    StartCoroutine(ApplyPoison(health, player));
-                }
-            }
+            _playersInArea.Add(player);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // Bỏ qua các object không phải Player
-        if (collision.name.Contains("Rada") || collision.name.Contains("Enemy"))
-        {
-            return;
-        }
+        if (!_isActive) return;
 
-        GameObject player = GetPlayerObject(collision);
-        if (player != null && _playersInPoison.Contains(player))
+        GameObject player = getPlayerFromCollider(collision);
+        if (player != null && _playersInArea.Contains(player))
         {
-            _playersInPoison.Remove(player);
-            
-            // Dừng coroutine poison nếu player rời khỏi vùng độc
-            PoisonedMarker marker = player.GetComponent<PoisonedMarker>();
-            if (marker != null)
-            {
-                marker.StopPoison();
-            }
+            _playersInArea.Remove(player);
         }
     }
 
-    private GameObject GetPlayerObject(Collider2D collision)
+    private GameObject getPlayerFromCollider(Collider2D collision)
     {
-        
+        // Bỏ qua các object không phải player
+        if (collision.name.Contains("Rada") || collision.name.Contains("Enemy"))
+            return null;
+
+        // Tìm player object trong hierarchy
         Transform current = collision.transform;
         while (current != null)
         {
-            if (current.name == "Player")
-            {
-                return current.gameObject;
-            }
-            current = current.parent;
-        }
-
-        // Kiểm tra theo tag nếu không tìm thấy theo tên
-        current = collision.transform;
-        while (current != null)
-        {
-            if (current.CompareTag("Player"))
+            if (current.name == "Player" || current.CompareTag("Player"))
             {
                 return current.gameObject;
             }
@@ -202,44 +163,22 @@ public class Poison : MonoBehaviour
         return null;
     }
 
-    private IEnumerator ApplyPoison(HealthManager health, GameObject playerObj)
+    private void cleanupAndDestroy()
     {
-        var marker = playerObj.AddComponent<PoisonedMarker>();
-
-        for (float t = 0; t < _poisonedTime; t += 1f)
-        {
-            // Kiểm tra xem player còn trong vùng độc không
-            if (!_playersInPoison.Contains(playerObj) || !_isActive)
-            {
-                break;
-            }
-
-            Debug.Log($"Applying poison damage to {playerObj.name}: damage = {_poisonDamage}");
-            health.takeDamage(0, _poisonDamage, true);
-            
-            Debug.Log($"Poison damage applied: {t + 1} seconds");
-            yield return new WaitForSeconds(1f);
-        }
-
-        if (marker != null)
-        {
-            Destroy(marker);
-        }
         
-    }
-}
+        // Clear danh sách player
+        _playersInArea.Clear();
 
-public class PoisonedMarker : MonoBehaviour 
-{
-    private bool _shouldStop = false;
-    
-    public void StopPoison()
-    {
-        _shouldStop = true;
-    }
-    
-    public bool ShouldStop()
-    {
-        return _shouldStop;
+        // Gọi Die() từ PhongHuyetTrung
+        PhongHuyetTrung enemy = GetComponent<PhongHuyetTrung>();
+        if (enemy != null)
+        {
+            enemy.Die();
+        }
+        else
+        {
+            // Fallback nếu không tìm thấy component
+            Destroy(gameObject);
+        }
     }
 }
