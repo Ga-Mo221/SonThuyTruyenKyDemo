@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/AllGame/Scenes/MainMenu/LauncherCheck.unity
     guid: 13d4a782239e9904b8fcf66562e321e3
   - enabled: 1
