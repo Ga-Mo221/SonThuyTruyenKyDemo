@@ -231,22 +231,23 @@ public class LeThuyNhan : EnemyBase
         if (!_isInAttackCooldown)
             _canAttack = true;
     }
-    
+
     public override void Die()
     {
         if (!_isLive) return;
-        
+
         Debug.Log("LeThuyNhan: Dying");
-        
+
         _isLive = false;
         _isAttacking = false;
         _isHurt = false;
         _canAttack = false;
         _isInAttackCooldown = false;
         _stateTimer = 0f;
-        
+
         StopAllCoroutines();
         base.Die();
+        gameObject.GetComponent<Chest>().enemyDie(60f);
     }
     
     #endregion

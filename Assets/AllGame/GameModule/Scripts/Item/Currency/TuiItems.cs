@@ -43,7 +43,7 @@ public class TuiItems : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && _chest._rtItems.Count > 0)
         {
             _canOpen = true;
             F.SetActive(true);

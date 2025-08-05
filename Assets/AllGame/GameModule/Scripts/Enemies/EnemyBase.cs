@@ -300,7 +300,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual IEnumerator waitAndDestroy(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Hàm Debug

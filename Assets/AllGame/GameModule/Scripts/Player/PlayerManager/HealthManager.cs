@@ -57,6 +57,8 @@ public class HealthManager : MonoBehaviour
 
     private void damageText(float damage, bool magic)
     {
+        if (_displayDamageTextPos == null) Debug.LogError("_displayDamageTextPos Null");
+        if (_damagePrefab == null) Debug.LogError("_damagePrefab Null");
         GameObject _Text = Instantiate(_damagePrefab, transform.position, Quaternion.identity, _displayDamageTextPos);
         var _text = _Text.GetComponent<DamageText>();
 

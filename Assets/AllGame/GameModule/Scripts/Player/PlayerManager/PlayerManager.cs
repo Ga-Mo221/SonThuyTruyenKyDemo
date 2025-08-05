@@ -203,11 +203,6 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void resetVelocity()
-    {
-        
-    }
-
     // add = true là bán và nhặt được xèng, add = false là bán đồ
     public bool setCoin(int value, bool add)
     {

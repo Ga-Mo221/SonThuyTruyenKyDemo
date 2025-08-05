@@ -220,12 +220,12 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab) && PlayerManager.Instance._isAlive)
         {
+            Debug.Log("Open Inventory");
             bool isActive = _inventoryMenu.activeSelf;
             _inventoryMenu.SetActive(!isActive);
             _openIventory = !isActive;
             if (!isActive)
             {
-                PlayerManager.Instance.resetVelocity();
                 PlayerManager.Instance._knocked = true;
             }
             else
@@ -246,7 +246,6 @@ public class PlayerInput : MonoBehaviour
 
                 if (!isActive)
                 {
-                    PlayerManager.Instance.resetVelocity();
                     PlayerManager.Instance._knocked = true;
                 }
                 else

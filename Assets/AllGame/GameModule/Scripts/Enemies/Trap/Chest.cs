@@ -130,7 +130,6 @@ public class Chest : MonoBehaviour
 
             if (_isItems && _rtItems.Count > 0)
             {
-                PlayerManager.Instance.resetVelocity();
                 displayItems();
                 _itemsDropParent.parent.parent.parent.gameObject.SetActive(true);
                 PlayerManager.Instance._knocked = true;

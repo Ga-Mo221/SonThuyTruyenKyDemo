@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         checkGrounded();
-        debug();
+        //debug();
         if (_canMove)
         {
             handleJump();
