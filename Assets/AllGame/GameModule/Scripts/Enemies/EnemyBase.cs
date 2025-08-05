@@ -92,7 +92,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void detectPlayer()
     {
-        _player = _enemyRada._player;
+        //_player = _enemyRada._player;
+        _player = (_enemyRada != null && _enemyRada._player != null) ? _enemyRada._player : null;
     }
 
     // Hàm xử lí truy đuổi
@@ -101,6 +102,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (!_isChasing)
         {
             _isChasing = true;
+            Debug.Log("[EnemyBase] Switch to CHASE");
             _path = null;
             _currentWaypoint = 0;
         }
@@ -113,6 +115,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (_isChasing)
         {
             _isChasing = false;
+            Debug.Log("[EnemyBase] Switch to PATROL");
             _path = null;
             _currentWaypoint = 0;
         }
@@ -330,7 +333,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             _stuckTimer += Time.fixedDeltaTime;
 
-            if (_stuckTimer >= _stuckThreshold)
+            if (_stuckTimer >= _stuckThreshold && _player != null)
             {
                 float distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
 

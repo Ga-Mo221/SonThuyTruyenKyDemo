@@ -28,15 +28,9 @@ public class LeThuyNhan : EnemyBase
         _canFly = false;
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void Update()
     {
         if (!_isLive) return;
-        
         base.Update();
         UpdateStateTimer();
         CheckForAttack();
@@ -57,8 +51,6 @@ public class LeThuyNhan : EnemyBase
         if (_player == null && _enemyRada != null && _enemyRada._player != null)
         {
             _player = _enemyRada._player;
-            Debug.Log($"Rada thấy: {_enemyRada._player}");
-
         }
 
         base.FixedUpdate();
@@ -87,23 +79,12 @@ public class LeThuyNhan : EnemyBase
             _stateTimer -= Time.deltaTime;
             if (_stateTimer <= 0f)
             {
-                OnStateTimerExpired();
+                if (_isAttacking) EndAttack();
+                else if (_isHurt) EndHurt();
             }
         }
     }
-    
-    private void OnStateTimerExpired()
-    {
-        if (_isAttacking)
-        {
-            EndAttack();
-        }
-        else if (_isHurt)
-        {
-            EndHurt();
-        }
-    }
-    
+        
     #endregion
 
     #region Attack Logic
@@ -111,12 +92,8 @@ public class LeThuyNhan : EnemyBase
     private void CheckForAttack()
     {
         if (!CanInitiateAttack()) return;
-        
         float distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
-        
-        float attackCheckRange = _enemyAttackRange * 1.1f;
-        
-        if (distanceToPlayer <= attackCheckRange)
+        if (distanceToPlayer <= _enemyAttackRange * 1.1f)
         {
             InitiateAttack();
         }
@@ -154,15 +131,11 @@ public class LeThuyNhan : EnemyBase
         
         // Trigger animation
         if (_animator != null)
-        {
             _animator.SetTrigger("isAttack");
-        }
-        
+
         // Clear any existing coroutine
         if (_currentStateCoroutine != null)
-        {
             StopCoroutine(_currentStateCoroutine);
-        }
     }
     
     private void EndAttack()
@@ -185,24 +158,20 @@ public class LeThuyNhan : EnemyBase
     private IEnumerator AttackCooldownCoroutine()
     {
         yield return new WaitForSeconds(_attackCooldown);
-        
         if (_isLive)
         {
             _canAttack = true;
             _isInAttackCooldown = false;
         }
-        
         _currentStateCoroutine = null;
     }
     
     protected override void Attack()
     {
         if (!_isLive || _player == null) return;
-        
+
         float distance = Vector2.Distance(transform.position, _player.transform.position);
-        float damageRange = _enemyAttackRange * 1.2f;
-        
-        if (distance <= damageRange)
+        if (distance <= _enemyAttackRange * 1.2f)
         {
             HealthManager playerHealth = _player.GetComponent<HealthManager>();
             if (playerHealth != null)
@@ -210,10 +179,6 @@ public class LeThuyNhan : EnemyBase
                 playerHealth.takeDamage(1, _enemyPhysicalDamage, false);
                 Debug.Log($"LeThuyNhan deals {_enemyPhysicalDamage} damage to player (distance: {distance:F2})");
             }
-        }
-        else
-        {
-            Debug.Log($"LeThuyNhan attack missed - distance: {distance:F2}, range: {damageRange:F2}");
         }
     }
     
@@ -236,9 +201,7 @@ public class LeThuyNhan : EnemyBase
         
         // Interrupt attack if currently attacking
         if (_isAttacking)
-        {
             _isAttacking = false;
-        }
         
         // Stop movement completely
         if (_rb != null)
@@ -249,9 +212,7 @@ public class LeThuyNhan : EnemyBase
         
         // Trigger hurt animation
         if (_animator != null)
-        {
             _animator.SetTrigger("isHurt");
-        }
         
         // Clear any existing state coroutine but keep attack cooldown running if active
         if (_currentStateCoroutine != null && !_isInAttackCooldown)
@@ -267,12 +228,8 @@ public class LeThuyNhan : EnemyBase
         
         _isHurt = false;
         _stateTimer = 0f;
-        
-        // If not in attack cooldown, can attack again
         if (!_isInAttackCooldown)
-        {
             _canAttack = true;
-        }
     }
     
     public override void Die()
@@ -288,10 +245,7 @@ public class LeThuyNhan : EnemyBase
         _isInAttackCooldown = false;
         _stateTimer = 0f;
         
-        // Stop all coroutines
         StopAllCoroutines();
-        
-        // Call base die
         base.Die();
     }
     
@@ -320,10 +274,7 @@ public class LeThuyNhan : EnemyBase
     private void FacePlayer()
     {
         if (_player == null) return;
-        
         float direction = _player.transform.position.x - transform.position.x;
-        
-        // Only flip if there's significant difference to avoid jittering
         if (Mathf.Abs(direction) > 0.1f)
         {
             Vector3 scale = transform.localScale;
@@ -338,13 +289,11 @@ public class LeThuyNhan : EnemyBase
     
     public void onAttackHit()
     {
-        // Called by animation event at the moment of impact
         Attack();
     }
     
     public void onAttackFinished()
     {
-        // Called by animation event when attack animation completes
         if (_isLive && _isAttacking)
         {
             EndAttack();
@@ -353,7 +302,6 @@ public class LeThuyNhan : EnemyBase
     
     public void onHurtFinished()
     {
-        // Called by animation event when hurt animation completes
         if (_isLive && _isHurt)
         {
             EndHurt();
