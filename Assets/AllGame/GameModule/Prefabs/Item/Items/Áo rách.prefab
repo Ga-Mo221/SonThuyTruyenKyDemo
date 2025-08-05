@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 2567130283596073164}
   - component: {fileID: 5632642352574474545}
   - component: {fileID: 2692942625270887338}
-  - component: {fileID: 1613306715968400973}
   m_Layer: 5
   m_Name: "\xC1o r\xE1ch"
   m_TagString: Untagged
@@ -270,23 +269,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: bd2e6840c82835f42a4fceed3285980d, type: 2}
---- !u!114 &1613306715968400973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7632411020949737553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04b274bf08a56a478a35a4ec9c03b6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flyPower: 7
-  _item: 1
-  _collider: {fileID: 0}
-  _dropTime: 0
-  _moveSpeedToPlayer: 0
-  _coin: 1
-  _XengValue: 0
-  _LinhAnValue: 0

@@ -40,6 +40,11 @@ public class PlayerInput : MonoBehaviour
                 handleAttack();
             handleMove();
         }
+        else
+        {
+            _isMoving = false;
+            _isRunning = false;
+        }
         openInventory();
         openOption();
     }
@@ -59,7 +64,7 @@ public class PlayerInput : MonoBehaviour
             PlayerManager.Instance._stamina = 0;
             _isRunning = false;
         }
-        if (_isMoving && _isrun && _lastDirection != _moveInput && !_isSiting)
+        if (_isMoving && _isrun && _lastDirection != _moveInput && !_isSiting && !_isJumping)
         {
             if (_resetIsRun != null)
             {
@@ -74,7 +79,7 @@ public class PlayerInput : MonoBehaviour
             _lastDirection = _moveInput;
             _startResetIsRun = true;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isSiting && _isMoving && !_isRunning && PlayerManager.Instance._stamina > 0 && PlayerManager.Instance.Stats._tutorialRun)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_isSiting && _isMoving && !_isRunning && PlayerManager.Instance._stamina > 0 && PlayerManager.Instance.Stats._tutorialRun && !_isJumping)
         {
             _lastDirection = _moveInput;
             _isRunning = !_isRunning;
@@ -170,8 +175,7 @@ public class PlayerInput : MonoBehaviour
 #endif
         _isJump = false;
     }
-    public void setJumping() => _isJumping = true;
-    public void resetJumping() => _isJumping = false;
+    public void setJumping(bool _isGrounded) => _isJumping = !_isGrounded;
 
 
 
@@ -205,7 +209,6 @@ public class PlayerInput : MonoBehaviour
     {
         yield return new WaitForSeconds(_canAttackCooldown);
         _canAttack = true;
-        Debug.Log("Có thể đánh lại");
     }
     public void setCanAttack() => _canAttack = false;
 
@@ -221,7 +224,10 @@ public class PlayerInput : MonoBehaviour
             _inventoryMenu.SetActive(!isActive);
             _openIventory = !isActive;
             if (!isActive)
+            {
+                PlayerManager.Instance.resetVelocity();
                 PlayerManager.Instance._knocked = true;
+            }
             else
                 PlayerManager.Instance._knocked = false;
         }
@@ -239,7 +245,10 @@ public class PlayerInput : MonoBehaviour
                 _Option.SetActive(!isActive);
 
                 if (!isActive)
+                {
+                    PlayerManager.Instance.resetVelocity();
                     PlayerManager.Instance._knocked = true;
+                }
                 else
                     PlayerManager.Instance._knocked = false;
             }

@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
 
     // check gounded
     private bool _isGround;
+    private bool _canCheckGrounded = true;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private Vector2 _boxSize = new Vector2(0.5f, 0.1f);
     [SerializeField] private Transform _groundCheck;
 
     // move
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         checkGrounded();
-        //debug();
+        debug();
         if (_canMove)
         {
             handleJump();
@@ -56,19 +58,32 @@ public class PlayerController : MonoBehaviour
     // check gorunded
     private void checkGrounded()
     {
-        _isGround = Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer) && _rb.linearVelocity.y < 1;
+        if (_canCheckGrounded)
+            _isGround = Physics2D.OverlapBox(_groundCheck.position, _boxSize, 0f, _groundLayer);
+        else _isGround = false;
+
         _animManger.setIsGround(_isGround);
         if (_isGround)
-        {
             _jumpCount = 0;
-            _playerInput.resetJumping();
-        }
-        else _playerInput.setJumping();
+        _playerInput.setJumping(_isGround);
 
         if (_isGround && !_playerInput._isMoving && !_isDashing && !_playerInput._isJumping && !PlayerManager.Instance._canMoveAttack)
         {
             _rb.linearVelocity = new Vector2(0, 0);
         }
+    }
+    private IEnumerator resetCanCheckGrounded()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _canCheckGrounded = true;
+    }
+
+    void OnDrawGizmos()
+    {
+        if (_groundCheck == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(_groundCheck.position, _boxSize);
     }
 
 
@@ -164,7 +179,13 @@ public class PlayerController : MonoBehaviour
             if (!_isGround) _jumpCount++;
             //Debug.Log("Nhảy, jumpCount: " + _jumpCount);
             _animManger.setJumping();
+            if (_isGround)
+            {
+                _canCheckGrounded = false;
+                StartCoroutine(resetCanCheckGrounded());
+            }
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
+            
         }
     }
     private IEnumerator fixDash()
@@ -176,6 +197,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(resetDashCooldown());
         }
     }
+
 
     // attack
     private void handleAttack()
@@ -198,8 +220,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Đang đi");
         }
         if (_playerInput._isSiting) Debug.Log("Đang ngồi");
-        if (_playerInput._isJumping) Debug.Log("Đang nhảy");
         if (_isDashing) Debug.Log("đang Dash");
         if (!_canMove) Debug.Log("Đang Đánh");
+        if (_isGround) Debug.Log("Đang đứng trên mặt đất");
+        else if (_playerInput._isJumping) Debug.Log("Đang nhảy");
     }
 }

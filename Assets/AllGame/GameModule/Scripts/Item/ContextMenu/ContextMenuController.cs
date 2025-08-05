@@ -5,6 +5,7 @@ public class ContextMenuController : MonoBehaviour
 {
     private RtItem _rtItem;
     private bool _rightClick;
+    private ItemUiController _itemUiController;
 
     [SerializeField] private GameObject _panelUse;
     [SerializeField] private Button _buttonUse;
@@ -13,10 +14,12 @@ public class ContextMenuController : MonoBehaviour
 
     [SerializeField] private GameObject _panelEquei;
 
-    public void setRtItem(RtItem item, bool rightClick)
+
+    public void setRtItem(RtItem item, bool rightClick, ItemUiController itemUi)
     {
         _rtItem = item;
         _rightClick = rightClick;
+        _itemUiController = itemUi;
     }
 
     void Start()
@@ -40,6 +43,13 @@ public class ContextMenuController : MonoBehaviour
         else if (_rightClick && _rtItem._itemStatus == ItemStatus.Equip)
         {
             _panelEquei.SetActive(true);
+        }
+        else if (_rightClick && _rtItem._itemStatus == ItemStatus.Drop)
+        {
+            _itemUiController._pickUp = true;
+            _rtItem.setItemStatus(ItemStatus.UnEquip);
+            InventoryManager.Instance.AddItemInList(_rtItem);
+            CloseContextMenu();
         }
     }
 

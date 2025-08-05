@@ -146,6 +146,62 @@ public class InventoryManager : MonoBehaviour
         DisplayInventory();
     }
 
+    public void AddItemInList(RtItem rtItem)
+    {
+        switch (rtItem._baseItem._itemType)
+        {
+            case ItemType.Weapon:
+                {
+                    if (_rtItemsWeapon.Count < 10)
+                        _rtItemsWeapon.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
+            case ItemType.Helmet:
+                {
+                    if (_rtItemsHelmet.Count < 15)
+                        _rtItemsHelmet.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
+            case ItemType.Armor:
+                {
+                    if (_rtItemsArmor.Count < 15)
+                        _rtItemsArmor.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
+            case ItemType.Boots:
+                {
+                    if (_rtItemsBoots.Count < 15)
+                        _rtItemsBoots.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
+            case ItemType.Accessory:
+                {
+                    if (_rtItemsAccesory.Count < 15)
+                        _rtItemsAccesory.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
+            case ItemType.Consumable:
+                {
+                    if (_rtItemsConsumahble.Count < 60)
+                        _rtItemsConsumahble.Add(rtItem);
+                    else
+                        Debug.Log("Túi đã đầy");
+                    break;
+                }
+        }
+        DisplayInventory();
+    }
+
 
     public void RemoveItemInList(RtItem item)
     {

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1909139615090467656}
   - component: {fileID: 1155551137238480910}
   - component: {fileID: 2267913731231223062}
-  - component: {fileID: 7519295930838425501}
   m_Layer: 5
   m_Name: "N\xF3n ba t\u1EA7m"
   m_TagString: Untagged
@@ -194,26 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 51cd6e8db5f36e3478c84cae4c7084c2, type: 2}
---- !u!114 &7519295930838425501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5681781735465521336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04b274bf08a56a478a35a4ec9c03b6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flyPower: 7
-  _item: 1
-  _collider: {fileID: 0}
-  _dropTime: 0
-  _moveSpeedToPlayer: 0
-  _coin: 1
-  _XengValue: 0
-  _LinhAnValue: 0
 --- !u!1 &6458403958207801128
 GameObject:
   m_ObjectHideFlags: 0

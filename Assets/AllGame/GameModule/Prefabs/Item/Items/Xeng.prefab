@@ -440,7 +440,7 @@ MonoBehaviour:
   _item: 0
   _collider: {fileID: 8941955137732486822}
   _dropTime: 1
-  _moveSpeedToPlayer: 10
+  _moveSpeedToPlayer: 20
   _coin: 1
   _XengValue: 5
   _LinhAnValue: 0

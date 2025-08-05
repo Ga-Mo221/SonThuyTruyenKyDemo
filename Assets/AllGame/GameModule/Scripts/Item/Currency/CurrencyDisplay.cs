@@ -52,11 +52,18 @@ public class CurrencyDisplay : MonoBehaviour
         {
             if (_rb.linearVelocity.y <= 0 && !_drop)
             {
-                _drop = true;
-                StartCoroutine(EnableDrop());
+                StartCoroutine(redyToDrop());
+                _rb.gravityScale = 0f;
             }
             moveToPlayer();
         }
+    }
+
+    private IEnumerator redyToDrop()
+    {
+        yield return new WaitForSeconds(1f);
+        _drop = true;
+        StartCoroutine(EnableDrop());
     }
 
     private void fly()
@@ -80,9 +87,9 @@ public class CurrencyDisplay : MonoBehaviour
         _rb.linearDamping = 0f;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !_item)
+        if (collision.CompareTag("Player") && !_item && _drop)
         {
             _target = collision.transform;
         }
@@ -115,7 +122,7 @@ public class CurrencyDisplay : MonoBehaviour
 
     private IEnumerator destroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         if (_coin)
             PlayerManager.Instance.setCoin(_XengValue, true);
         Destroy(gameObject);
