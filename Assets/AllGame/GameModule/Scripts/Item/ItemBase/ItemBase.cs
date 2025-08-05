@@ -31,7 +31,8 @@ public enum ItemStatus
 {
     Equip,
     UnEquip,
-    InShop
+    InShop,
+    Drop
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Items/create New Item")]
@@ -92,6 +93,11 @@ public class RtItem
         _itemID = item._itemID;
         _instanceID = System.Guid.NewGuid().ToString();
         _itemStatus = ItemStatus.UnEquip;
+    }
+
+    public void setItemStatus(ItemStatus status)
+    {
+        _itemStatus = status;
     }
 
     public string toString()

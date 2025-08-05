@@ -40,7 +40,9 @@ public class PlayerManager : MonoBehaviour
         if (_player == null)
             Debug.LogError("chưa gắn player vào");
         else
+        {
             _animManager = _player.GetComponent<PlayerAnimationManager>();
+        }
     }
 
     public void saveGame()
@@ -199,6 +201,11 @@ public class PlayerManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void resetVelocity()
+    {
+        
     }
 
     // add = true là bán và nhặt được xèng, add = false là bán đồ

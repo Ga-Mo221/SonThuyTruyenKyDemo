@@ -10,7 +10,6 @@ public class PlayerStatusUI : MonoBehaviour
     [SerializeField] private Slider _Stamina;
 
     // text
-    [SerializeField] private TextMeshProUGUI _allItemText;
     [SerializeField] private TextMeshProUGUI _xeng;
 
     // life
@@ -26,7 +25,6 @@ public class PlayerStatusUI : MonoBehaviour
     void Start()
     {
         setPlayerStatus();
-        _allItemText.text = "All Items: " + InventoryManager.Instance._allItems.Count;
     }
 
     void Update()
@@ -92,5 +90,10 @@ public class PlayerStatusUI : MonoBehaviour
                 _life3.enabled = true;
                 break;
         }
+    }
+
+    public void setKnockedPlayer()
+    {
+        PlayerManager.Instance._knocked = !PlayerManager.Instance._knocked;
     }
 }

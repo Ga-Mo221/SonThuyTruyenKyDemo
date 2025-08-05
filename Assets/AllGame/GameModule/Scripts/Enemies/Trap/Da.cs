@@ -10,12 +10,10 @@ public class Da : MonoBehaviour
         {
             if (_playerInput._isRunning)
             {
-                Debug.Log("run");
                 PlayerManager.Instance.Stats._delay = 80;
             }
             else if (_playerInput._isMoving)
             {
-                Debug.Log("walk");
                 PlayerManager.Instance.Stats._delay = 90;
             }
         }

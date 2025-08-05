@@ -212,7 +212,7 @@ MonoBehaviour:
   _rtItem:
     _itemID: 
     _instanceID: 
-    _itemStatus: 0
+    _itemStatus: 3
     _bonusDamagePhysical: 0
     _bonusDamgeMagic: 0
     _bonusSpeedAttack: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
     _bonuscritChancePhysical: 0
     _bonusCritChanceMagic: 0
     _bonusArmor: 0
+    _bonusPhysicRes: 0
     _bonusMagicResist: 0
     _bonusCooldownReduction: 0
-    _bonusCooldownTime: 0
   _contextMenuPrefab: {fileID: 160031824280467043, guid: 5a9a39ac708f31e4f832414229212053, type: 3}
   _displayPos: {fileID: 1321555112457591319}

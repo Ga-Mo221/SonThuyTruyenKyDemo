@@ -29,7 +29,6 @@ public class ItemPickup : MonoBehaviour
         {
             if (_canAttack)
             {
-                Debug.Log("dang tro vao item " + item.name);
                 PlayerManager.Instance.Stats._tutorialAttack = false;
             }
         }

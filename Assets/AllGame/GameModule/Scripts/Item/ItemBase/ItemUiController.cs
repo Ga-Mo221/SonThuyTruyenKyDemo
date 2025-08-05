@@ -6,16 +6,22 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler
     public RtItem _rtItem;
     public GameObject _contextMenuPrefab;
     public Transform _displayPos;
+    public bool _pickUp = false;
 
     private GameObject _canvas;
     private Transform _overlay;
 
     private void Start()
     {
-        _canvas = GameObject.Find("InventoryMenu");
+        if (_rtItem._itemStatus == ItemStatus.UnEquip || _rtItem._itemStatus == ItemStatus.Equip)
+            _canvas = GameObject.Find("InventoryMenu");
+        else if (_rtItem._itemStatus == ItemStatus.Drop)
+            _canvas = GameObject.Find("ItemPickUp");
+        // in shop
+        
         if (_canvas == null)
         {
-            Debug.LogError("không tìm thấy InventoryMenu");
+            Debug.LogError("không tìm thấy _canvas");
         }
         else
         {
@@ -61,6 +67,6 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler
         Vector3 _pos = _displayPos.position;
         GameObject _inventoryContextMenu = Instantiate(_contextMenuPrefab, _pos, Quaternion.identity, _overlay);
         _overlay.GetComponent<OverlayClick>().SetContextMenu(_inventoryContextMenu.GetComponent<ContextMenuController>());
-        _inventoryContextMenu.GetComponent<ContextMenuController>().setRtItem(_rtItem, true);
+        _inventoryContextMenu.GetComponent<ContextMenuController>().setRtItem(_rtItem, true, this);
     }
 }
